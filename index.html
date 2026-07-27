@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Menahil! ☀️💛</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          },
+          colors: {
+            brandYellow: {
+              50: '#FEFCE8',
+              100: '#FEF08A',
+              200: '#FDE047',
+              300: '#FACC15',
+              400: '#EAB308',
+              500: '#CA8A04',
+              600: '#A16207',
+              700: '#854D0E',
+              800: '#713F12',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #FEFCE8;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #FACC15;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #EAB308;
+    }
+
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-12px) rotate(2deg); }
+    }
+    .animate-float {
+      animation: floatSlow 4s ease-in-out infinite;
+    }
+
+    /* Envelope Styling */
+    .envelope-container {
+      perspective: 1000px;
+    }
+    .envelope-card {
+      position: relative;
+      width: 320px;
+      height: 220px;
+      margin: 0 auto;
+      background: #FDE047;
+      border: 3px solid #EAB308;
+      border-radius: 16px;
+      box-shadow: 0 15px 30px -10px rgba(234, 179, 8, 0.35);
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .envelope-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 35px -8px rgba(234, 179, 8, 0.45);
+    }
+    .envelope-flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 160px solid transparent;
+      border-right: 160px solid transparent;
+      border-top: 110px solid #EAB308;
+      transform-origin: top;
+      transition: transform 0.5s ease;
+      z-index: 4;
+    }
+    .envelope-card.is-open .envelope-flap {
+      transform: rotateX(180deg);
+      z-index: 1;
+    }
+    .letter-sheet {
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      top: 12px;
+      background: #FFFDF0;
+      border-radius: 12px;
+      padding: 16px;
+      border: 2px dashed #FACC15;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), height 0.6s ease;
+      z-index: 2;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    }
+    .envelope-card.is-open .letter-sheet {
+      transform: translateY(-110px);
+      height: 340px;
+      z-index: 10;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+
+    @keyframes flicker {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.15) translateY(-2px); }
+    }
+    .flame-active {
+      animation: flicker 0.8s ease-in-out infinite alternate;
+    }
+  </style>
+</head>
+
+<body class="bg-[#FFFDF0] text-gray-800 font-sans antialiased selection:bg-yellow-300 selection:text-amber-900 min-h-screen flex flex-col justify-between overflow-hidden">
+
+  <!-- WELCOME ENVELOPE OVERLAY -->
+  <div id="intro-overlay" class="fixed inset-0 z-[100] bg-gradient-to-br from-yellow-300 via-amber-200 to-yellow-400 flex flex-col justify-center items-center transition-all duration-700 ease-in-out px-4">
+    <div class="text-center space-y-6 max-w-sm mx-auto">
+      <div class="space-y-2 animate-float">
+        <span class="bg-yellow-100/90 text-amber-900 font-bold text-xs uppercase tracking-widest px-4 py-1.5 rounded-full border border-yellow-300 shadow-sm inline-block">✨ Special Delivery ✨</span>
+        <h1 class="font-serif text-3xl sm:text-4xl font-extrabold text-amber-950 tracking-tight">A Birthday Letter For Menahil</h1>
+      </div>
+
+      <!-- Envelope Card -->
+      <div class="envelope-container py-4">
+        <div id="welcome-envelope" onclick="openWelcomeEnvelope()" class="envelope-card cursor-pointer transform hover:scale-105 transition-all duration-300">
+          <div class="envelope-flap"></div>
+          <div class="letter-sheet text-left flex flex-col justify-between select-none overflow-hidden">
+            <div class="p-2">
+              <div class="flex justify-between items-center pb-1 mb-1 border-b border-dashed border-amber-300">
+                <span class="font-serif text-[11px] font-bold italic text-amber-700">Birthday Envelope</span>
+                <span class="text-[9px] text-gray-400">August 26</span>
+              </div>
+              <p class="font-serif text-xs font-bold text-gray-800 mb-1">To Menahil 🌸💛</p>
+              <p class="font-sans text-[11px] text-gray-600 leading-tight">
+                Tap to break the seal and open your special birthday surprise page...
+              </p>
+            </div>
+            <div class="pt-1 border-t border-dashed border-amber-300 text-center">
+              <span class="font-serif italic text-[10px] text-amber-700 font-bold">Tap to Open ✉️</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="text-xs text-amber-950 font-semibold animate-pulse">Tap the envelope to open your surprise! 💌</p>
+    </div>
+  </div>
+
+  <audio id="bg-music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-yellow-100/70 border-b border-yellow-200/80 px-6 py-3.5 transition-all">
+    <div class="max-w-5xl mx-auto flex justify-between items-center">
+      <div class="flex items-center gap-2">
+        <span class="text-xl">💛</span>
+        <span class="font-serif font-bold text-amber-900 text-base sm:text-lg tracking-tight">Menahil's Day ✨</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <button onclick="toggleAudio()" id="audio-toggle-btn" class="bg-yellow-300/80 hover:bg-yellow-400 text-amber-900 text-xs font-bold px-3.5 py-1.5 rounded-full border border-yellow-400/60 shadow-sm transition-all flex items-center gap-1.5">
+          <span id="audio-icon">🎵</span> <span id="audio-label">Music: Off</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-grow">
+    
+    <!-- HERO SECTION -->
+    <section class="relative py-16 sm:py-24 px-6 overflow-hidden bg-gradient-to-b from-yellow-100/60 via-amber-50/40 to-[#FFFDF0]">
+      <div class="max-w-3xl mx-auto text-center space-y-8 relative z-10">
+        
+        <div class="inline-flex items-center gap-2 bg-yellow-200/80 text-amber-900 text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full border border-yellow-300 shadow-sm animate-float">
+          <span>✨ August 26 Special ✨</span>
+        </div>
+
+        <div class="space-y-4">
+          <h1 class="font-serif text-4xl sm:text-6xl font-extrabold text-amber-950 tracking-tight leading-tight">
+            Happy Birthday <br class="sm:hidden"><span class="text-amber-600 underline decoration-yellow-400 decoration-wavy decoration-2">Menahil!</span> 🎉
+          </h1>
+          <p class="text-sm sm:text-base text-amber-900/80 max-w-lg mx-auto font-medium">
+            Welcome to your dedicated yellow-themed celebration page! Packed with logical puzzles, scratch cards, and secret wishes.
+          </p>
+        </div>
+
+        <!-- COUNTDOWN TIMER CONTAINER -->
+        <div id="countdown-wrapper" class="bg-white/80 backdrop-blur-md p-6 rounded-3xl border-2 border-yellow-300 shadow-xl max-w-md mx-auto space-y-4">
+          <p class="text-xs font-bold text-amber-800 uppercase tracking-wider">Countdown to August 26 🎉</p>
+          <div class="grid grid-cols-4 gap-2 text-center">
+            <div class="bg-yellow-100/80 p-3 rounded-2xl border border-yellow-300">
+              <span id="count-days" class="block font-serif text-2xl font-bold text-amber-900">00</span>
+              <span class="text-[10px] uppercase tracking-wider font-semibold text-amber-700">Days</span>
+            </div>
+            <div class="bg-yellow-100/80 p-3 rounded-2xl border border-yellow-300">
+              <span id="count-hours" class="block font-serif text-2xl font-bold text-amber-900">00</span>
+              <span class="text-[10px] uppercase tracking-wider font-semibold text-amber-700">Hours</span>
+            </div>
+            <div class="bg-yellow-100/80 p-3 rounded-2xl border border-yellow-300">
+              <span id="count-mins" class="block font-serif text-2xl font-bold text-amber-900">00</span>
+              <span class="text-[10px] uppercase tracking-wider font-semibold text-amber-700">Mins</span>
+            </div>
+            <div class="bg-yellow-100/80 p-3 rounded-2xl border border-yellow-300">
+              <span id="count-secs" class="block font-serif text-2xl font-bold text-amber-900">00</span>
+              <span class="text-[10px] uppercase tracking-wider font-semibold text-amber-700">Secs</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- AUGUST 26 CELEBRATION BANNER -->
+        <div id="celebration-banner" class="hidden bg-amber-400 text-amber-950 p-6 rounded-3xl border-4 border-yellow-300 shadow-2xl max-w-md mx-auto space-y-2 animate-bounce">
+          <h2 class="font-serif text-2xl font-extrabold">🎉 Happy Birthday Menahil! 🎉</h2>
+          <p class="text-xs font-bold uppercase tracking-wider">August 26 Celebrations Are Live!</p>
+          <p class="text-xs">Have a wonderful and joyful day!</p>
+        </div>
+
+        <div>
+          <button onclick="startSurprise()" class="inline-flex items-center gap-2 bg-gradient-to-r from-yellow-400 via-amber-400 to-yellow-500 hover:from-yellow-500 hover:to-amber-600 text-amber-950 font-extrabold text-sm sm:text-base px-8 py-4 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 border-2 border-yellow-200">
+            <span>Explore Magic 🎉</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CAKE SECTION -->
+    <section id="cake-section" class="py-16 bg-white/60 border-y border-yellow-200/70">
+      <div class="max-w-xl mx-auto px-6 text-center space-y-6">
+        <div class="space-y-2">
+          <span class="text-xs font-bold text-amber-800 bg-yellow-200/70 px-3 py-1 rounded-full uppercase tracking-wider">Make A Wish 🎂</span>
+          <h2 class="font-serif text-3xl font-bold text-gray-800">Blow The Birthday Candles!</h2>
+          <p class="text-xs sm:text-sm text-gray-600">
+            Click or tap on each candle flame to blow it out and unlock your wish!
+          </p>
+        </div>
+
+        <!-- VIRTUAL CAKE MODULE -->
+        <div class="relative max-w-xs mx-auto py-8 mt-4">
+          
+          <div class="flex justify-center gap-8 mb-[-8px] relative z-30">
+            <!-- Candle 1 -->
+            <div onclick="blowCandle(1)" class="cursor-pointer group flex flex-col items-center">
+              <div id="flame-1" class="w-4 h-6 bg-gradient-to-t from-amber-500 via-yellow-300 to-white rounded-full shadow-lg shadow-amber-400/80 flame-active transition-all"></div>
+              <div class="w-3 h-12 bg-gradient-to-b from-red-400 to-red-500 rounded-sm border border-red-600 shadow-sm"></div>
+            </div>
+            <!-- Candle 2 -->
+            <div onclick="blowCandle(2)" class="cursor-pointer group flex flex-col items-center">
+              <div id="flame-2" class="w-4 h-6 bg-gradient-to-t from-amber-500 via-yellow-300 to-white rounded-full shadow-lg shadow-amber-400/80 flame-active transition-all"></div>
+              <div class="w-3 h-14 bg-gradient-to-b from-blue-400 to-blue-500 rounded-sm border border-blue-600 shadow-sm"></div>
+            </div>
+            <!-- Candle 3 -->
+            <div onclick="blowCandle(3)" class="cursor-pointer group flex flex-col items-center">
+              <div id="flame-3" class="w-4 h-6 bg-gradient-to-t from-amber-500 via-yellow-300 to-white rounded-full shadow-lg shadow-amber-400/80 flame-active transition-all"></div>
+              <div class="w-3 h-12 bg-gradient-to-b from-green-400 to-green-500 rounded-sm border border-green-600 shadow-sm"></div>
+            </div>
+          </div>
+
+          <!-- CAKE BODY -->
+          <div class="relative flex flex-col items-center z-20">
+            <!-- Top Cream Tier -->
+            <div class="w-40 h-16 bg-[#FFFDF0] rounded-t-xl border-x-4 border-t-4 border-yellow-200 relative shadow-inner z-20 overflow-hidden">
+               <div class="absolute top-2 left-4 w-2 h-1 bg-pink-400 rounded-full rotate-45"></div>
+               <div class="absolute top-4 right-8 w-2 h-1 bg-blue-400 rounded-full -rotate-12"></div>
+               <div class="absolute top-8 left-10 w-2 h-1 bg-green-400 rounded-full rotate-90"></div>
+               <div class="absolute bottom-2 right-4 w-2 h-1 bg-purple-400 rounded-full rotate-12"></div>
+            </div>
+            
+            <!-- Chocolate Frosting Drip -->
+            <div class="w-44 flex justify-between absolute top-14 z-30">
+               <div class="w-6 h-8 bg-amber-700 rounded-b-full"></div>
+               <div class="w-8 h-6 bg-amber-700 rounded-b-full mt-[-2px]"></div>
+               <div class="w-5 h-9 bg-amber-700 rounded-b-full"></div>
+               <div class="w-9 h-7 bg-amber-700 rounded-b-full mt-[-4px]"></div>
+               <div class="w-6 h-8 bg-amber-700 rounded-b-full"></div>
+            </div>
+
+            <!-- Bottom Yellow Sponge Tier -->
+            <div class="w-56 h-24 bg-gradient-to-r from-yellow-300 via-yellow-200 to-yellow-300 rounded-lg border-4 border-yellow-400 shadow-xl flex items-center justify-center relative z-10">
+               <div class="text-center font-serif text-lg font-extrabold text-amber-800 tracking-wider bg-white/50 px-4 py-1 rounded-full border border-yellow-400/50 shadow-sm">
+                 HAPPY BIRTHDAY
+               </div>
+            </div>
+            
+            <!-- Cake Plate -->
+            <div class="w-64 h-8 bg-gray-200 rounded-[100%] border-b-4 border-gray-300 shadow-2xl mt-[-15px] z-0"></div>
+          </div>
+        </div>
+
+        <div id="cake-success-msg" class="hidden bg-yellow-100 border border-yellow-300 p-4 rounded-2xl text-amber-900 text-xs sm:text-sm font-semibold space-y-1">
+          <p class="text-base">🎉 Awesome! All candles blown! 🎉</p>
+          <p>May all your dreams and goals come true this year!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCRATCH SECTION -->
+    <section id="scratch-section" class="py-16 bg-gradient-to-b from-amber-50/60 to-yellow-100/40 border-y border-yellow-200">
+      <div class="max-w-xl mx-auto px-6 text-center space-y-6">
+        <div class="space-y-3">
+          <span class="text-xs uppercase tracking-widest font-bold text-amber-900 bg-yellow-300/80 px-3 py-1 rounded-full inline-block shadow-sm">Secret Wishes 🪙</span>
+          <h2 class="font-serif text-3xl font-semibold text-gray-800">Scratch ✨</h2>
+          <p class="text-xs sm:text-sm text-gray-600 max-w-sm mx-auto">
+            Scratch the golden foil below with your finger or mouse to reveal your special wish!
+          </p>
+        </div>
+
+        <div class="relative w-full max-w-md mx-auto h-64 rounded-3xl shadow-2xl overflow-hidden border-4 border-yellow-400 bg-white group">
+          
+          <div id="scratch-reveal-content" class="absolute inset-0 p-6 flex flex-col justify-center items-center text-center bg-gradient-to-br from-amber-50 via-yellow-100 to-amber-100 select-none">
+            <span class="text-4xl mb-2 animate-bounce">👑💛</span>
+            <h3 class="font-serif text-xl font-bold text-amber-900 mb-2">Special Wish For Menahil!</h3>
+            <p class="font-sans text-xs sm:text-sm text-amber-800 leading-relaxed font-medium">
+              "May your upcoming year be as bright and cheerful as your favorite yellow color! Always keep smiling, achieving great success, and bringing positive energy everywhere you go! Happy Birthday! 🎉✨"
+            </p>
+            <span class="text-[10px] text-amber-700 font-bold tracking-widest uppercase mt-3 bg-yellow-200/80 px-3 py-1 rounded-full border border-yellow-300">✨ 100% Golden Luck Scratched! ✨</span>
+          </div>
+
+          <canvas id="scratch-canvas" class="absolute inset-0 w-full h-full cursor-pointer z-10 touch-none"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUIZ SECTION -->
+    <section id="quiz-section" class="py-16 bg-gradient-to-b from-yellow-100/30 via-amber-50/50 to-[#FFFDF0]">
+      <div class="max-w-xl mx-auto px-6 text-center space-y-6">
+        <div class="space-y-2">
+          <span class="text-xs font-bold text-amber-800 bg-yellow-200/80 px-3 py-1 rounded-full uppercase tracking-wider">Fun Test 🕵️‍♀️</span>
+          <h2 class="font-serif text-3xl font-bold text-gray-800">Menahil's Personality & Logic Test</h2>
+          <p class="text-xs sm:text-sm text-gray-600">Answer these 3 rapid-fire questions to get your official diagnostic badge!</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-3xl border-2 border-yellow-300 shadow-lg text-left space-y-4 max-w-md mx-auto">
+          
+          <div id="question-1" class="space-y-3">
+            <p class="font-serif font-semibold text-gray-800 text-sm">1. When someone tells you a puzzle or joke, what is your first reaction?</p>
+            <div class="grid grid-cols-1 gap-2">
+              <button onclick="nextQuestion(1, 'A')" class="option-btn text-left p-3 rounded-xl border border-yellow-200 bg-yellow-50/50 text-xs text-gray-700 hover:bg-yellow-200 transition-colors">
+                A) I laugh quietly. 😄
+              </button>
+              <button onclick="nextQuestion(1, 'B')" class="option-btn text-left p-3 rounded-xl border border-yellow-200 bg-yellow-50/50 text-xs text-gray-700 hover:bg-yellow-200 transition-colors">
+                B) "Let's check the absolute logic behind this first!" 🔍📐
+              </button>
+            </div>
+          </div>
+
+          <div id="question-2" class="space-y-3 hidden">
+            <p class="font-serif font-semibold text-gray-800 text-sm">2. How quickly do you analyze random situations?</p>
+            <div class="grid grid-cols-1 gap-2">
+              <button onclick="nextQuestion(2, 'A')" class="option-btn text-left p-3 rounded-xl border border-yellow-200 bg-yellow-50/50 text-xs text-gray-700 hover:bg-yellow-200 transition-colors">
+                A) I take my time. 🧘‍♀️
+              </button>
+              <button onclick="nextQuestion(2, 'B')" class="option-btn text-left p-3 rounded-xl border border-yellow-200 bg-yellow-50/50 text-xs text-gray-700 hover:bg-yellow-200 transition-colors">
+                B) Instantly! Spotting details is my superpower. 🌶️
+              </button>
+            </div>
+          </div>
+
+          <div id="question-3" class="space-y-3 hidden">
+            <p class="font-serif font-semibold text-gray-800 text-sm">3. If a logical problem is slightly incorrect, what happens?</p>
+            <div class="grid grid-cols-1 gap-2">
+              <button onclick="nextQuestion(3, 'A')" class="option-btn text-left p-3 rounded-xl border border-yellow-200 bg-yellow-50/50 text-xs text-gray-700 hover:bg-yellow-200 transition-colors">
+                A) It's just a game, doesn't matter. 🤷‍♀️
+              </button>
+              <button onclick="nextQuestion(3, 'B')" class="option-btn text-left p-3 rounded-xl border border-yellow-200 bg-yellow-50/50 text-xs text-gray-700 hover:bg-yellow-200 transition-colors">
+                B) "This goes against absolute logic. This must be corrected!" 🔍📐
+              </button>
+            </div>
+          </div>
+
+          <div id="quiz-result" class="text-center space-y-4 hidden py-4">
+            <span class="text-4xl" id="result-emoji">🏆</span>
+            <h4 class="font-serif text-lg font-bold text-amber-700" id="result-title">Certified Logic Expert</h4>
+            <p class="text-xs text-gray-600 leading-relaxed max-w-xs mx-auto" id="result-desc">
+              Your results are verified! You are officially 99% logical analysis and 1% patience.
+            </p>
+            <button onclick="resetQuiz()" class="text-xs text-amber-800 hover:text-amber-950 underline font-semibold">
+              Retake Quiz 🔄
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FLOATING VIRTUAL ENVELOPE SECTION -->
+    <section id="letter-section" class="py-20 bg-gradient-to-b from-[#FFFDF0] via-yellow-100/30 to-[#FFFDF0] relative overflow-hidden">
+      <div class="max-w-4xl mx-auto px-6 text-center space-y-8">
+        <div class="space-y-3">
+          <span class="text-xs uppercase tracking-widest font-bold text-amber-700">A Special Note</span>
+          <h2 class="font-serif text-3xl font-semibold text-gray-800">Tap to Unfold My Letter 💌</h2>
+          <p class="text-xs sm:text-sm text-gray-600 max-w-sm mx-auto">
+            Tap below to open the yellow envelope!
+          </p>
+        </div>
+
+        <div class="py-6">
+          <div class="envelope-container">
+            <div id="envelope-element" onclick="toggleEnvelope()" class="envelope-card">
+              <div class="envelope-flap"></div>
+              
+              <div class="letter-sheet text-left flex flex-col justify-between select-none overflow-hidden">
+                <div class="overflow-y-auto pr-1">
+                  <div class="flex justify-between items-center pb-2 mb-2 border-b border-dashed border-amber-300">
+                    <span class="font-serif text-xs font-bold italic text-amber-700">Birthday Note</span>
+                    <span class="text-[10px] text-gray-400">August 26</span>
+                  </div>
+                  <h3 class="font-serif text-sm sm:text-base font-bold text-gray-800 mb-1.5">Dear Menahil, 🌸💛</h3>
+                  <div class="font-sans text-xs text-gray-600 leading-relaxed space-y-2">
+                    <p>
+                      Happy Birthday! I created this special yellow-themed webpage specifically to celebrate your upcoming big day on August 26th.
+                    </p>
+                    <p>
+                      Your habit of finding precise logic in every little detail and your passionate expressions make every conversation lively and memorable.
+                    </p>
+                    <p>
+                      May this coming year bring you immense happiness, endless yellow treats, and grand achievements! Keep shining with your sharp mind and positive energy! 🎉✨
+                    </p>
+                  </div>
+                </div>
+                <div class="pt-2 border-t border-dashed border-amber-300 text-right">
+                  <p class="font-serif italic text-[11px] text-amber-700 font-bold">Have a great day! 🎉</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="text-[11px] text-gray-500 italic">
+          (Tap on the envelope to open or close)
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="py-10 bg-yellow-100/50 border-t border-yellow-200 text-center space-y-3">
+    <div class="flex justify-center items-center gap-2">
+      <span class="text-amber-500 text-base">💛</span>
+      <span class="font-serif text-gray-700 text-xs sm:text-sm tracking-wide">Handcrafted in Yellow Theme for Menahil</span>
+    </div>
+    <p class="text-[10px] text-amber-800 font-semibold tracking-wider uppercase">Happy Birthday • August 26</p>
+  </footer>
+
+  <script>
+    let audioCtx = null;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playPopSound() {
+      try {
+        const ctx = getAudioContext();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(400, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(800, ctx.currentTime + 0.1);
+        gain.gain.setValueAtTime(0.15, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.1);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.1);
+      } catch(e) {
+        console.log("Audio synth error:", e);
+      }
+    }
+
+    function playBirthdayMelody() {
+      try {
+        const ctx = getAudioContext();
+        const notes = [
+          { f: 264, d: 0.375 }, { f: 264, d: 0.125 }, { f: 297, d: 0.5 }, { f: 264, d: 0.5 }, { f: 352, d: 0.5 }, { f: 330, d: 1.0 }, 
+          { f: 264, d: 0.375 }, { f: 264, d: 0.125 }, { f: 297, d: 0.5 }, { f: 264, d: 0.5 }, { f: 396, d: 0.5 }, { f: 352, d: 1.0 }, 
+          { f: 264, d: 0.375 }, { f: 264, d: 0.125 }, { f: 528, d: 0.5 }, { f: 440, d: 0.5 }, { f: 352, d: 0.5 }, { f: 330, d: 0.5 }, { f: 297, d: 1.0 },
+          { f: 466, d: 0.375 }, { f: 466, d: 0.125 }, { f: 440, d: 0.5 }, { f: 352, d: 0.5 }, { f: 396, d: 0.5 }, { f: 352, d: 1.2 } 
+        ];
+        let now = ctx.currentTime;
+        notes.forEach(n => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.value = n.f;
+          gain.gain.setValueAtTime(0.2, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + n.d - 0.05);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now);
+          osc.stop(now + n.d);
+          now += n.d;
+        });
+      } catch(e) {
+        console.log("Audio synth error:", e);
+      }
+    }
+
+    function triggerConfettiBlast() {
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 120,
+          spread: 80,
+          origin: { y: 0.6 },
+          colors: ['#FDE047', '#EAB308', '#CA8A04', '#FEF08A', '#FFFFFF']
+        });
+      }
+    }
+
+    let isPlayingAudio = false;
+    function toggleAudio() {
+      const music = document.getElementById('bg-music');
+      const label = document.getElementById('audio-label');
+      const icon = document.getElementById('audio-icon');
+
+      if (!music) return;
+
+      if (isPlayingAudio) {
+        music.pause();
+        isPlayingAudio = false;
+        label.textContent = 'Music: Off';
+        icon.textContent = '🎵';
+      } else {
+        music.play().then(() => {
+          isPlayingAudio = true;
+          label.textContent = 'Music: On';
+          icon.textContent = '🎶';
+        }).catch(err => {
+          console.log("Audio play blocked until user interaction:", err);
+        });
+      }
+    }
+
+    function openWelcomeEnvelope() {
+      const env = document.getElementById('welcome-envelope');
+      const overlay = document.getElementById('intro-overlay');
+      
+      if(env) env.classList.add('is-open');
+      playPopSound();
+      
+      const music = document.getElementById('bg-music');
+      if(music) {
+        music.play().then(() => {
+          isPlayingAudio = true;
+          document.getElementById('audio-label').textContent = 'Music: On';
+          document.getElementById('audio-icon').textContent = '🎶';
+        }).catch(e => console.log('Autoplay blocked'));
+      }
+      
+      setTimeout(() => {
+        overlay.style.opacity = '0';
+        triggerConfettiBlast();
+        
+        setTimeout(() => {
+          overlay.style.display = 'none';
+          document.body.classList.remove('overflow-hidden');
+          initScratchCanvas();
+        }, 700);
+      }, 600);
+    }
+
+    function startSurprise() {
+      const cakeSec = document.getElementById('cake-section');
+      if (cakeSec) {
+        cakeSec.scrollIntoView({ behavior: 'smooth' });
+      }
+      triggerConfettiBlast();
+    }
+
+    let candlesBlown = 0;
+    function blowCandle(id) {
+      const flame = document.getElementById(`flame-${id}`);
+      if (flame && !flame.classList.contains('hidden')) {
+        flame.classList.add('hidden');
+        candlesBlown++;
+        playPopSound();
+
+        if (candlesBlown === 3) {
+          setTimeout(() => {
+            const msg = document.getElementById('cake-success-msg');
+            if (msg) msg.classList.remove('hidden');
+            playBirthdayMelody();
+            triggerConfettiBlast();
+          }, 300);
+        }
+      }
+    }
+
+    function initScratchCanvas() {
+      const canvas = document.getElementById('scratch-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      
+      const rect = canvas.getBoundingClientRect();
+      if(rect.width === 0) return; 
+
+      canvas.width = rect.width;
+      canvas.height = rect.height;
+
+      const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      grad.addColorStop(0, '#EAB308');
+      grad.addColorStop(0.5, '#FDE047');
+      grad.addColorStop(1, '#CA8A04');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = '#713F12';
+      ctx.font = 'bold 14px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('✨ Scratch with finger or mouse ✨', canvas.width / 2, canvas.height / 2);
+
+      let isScratching = false;
+      let isRevealed = false;
+
+      function scratch(e) {
+        if (!isScratching || isRevealed) return;
+        const bounds = canvas.getBoundingClientRect();
+        let x, y;
+        if (e.touches && e.touches[0]) {
+          x = e.touches[0].clientX - bounds.left;
+          y = e.touches[0].clientY - bounds.top;
+        } else {
+          x = e.clientX - bounds.left;
+          y = e.clientY - bounds.top;
+        }
+
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.beginPath();
+        ctx.arc(x, y, 22, 0, Math.PI * 2);
+        ctx.fill();
+
+        checkPercent();
+      }
+
+      function checkPercent() {
+        if (isRevealed) return;
+        const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const pixels = imgData.data;
+        let transparent = 0;
+
+        for (let i = 3; i < pixels.length; i += 32) {
+          if (pixels[i] === 0) transparent++;
+        }
+
+        const percent = (transparent / (pixels.length / 32)) * 100;
+        if (percent > 30) {
+          isRevealed = true;
+          canvas.style.transition = 'opacity 0.6s ease';
+          canvas.style.opacity = '0';
+          setTimeout(() => {
+            canvas.style.display = 'none';
+          }, 600);
+          triggerConfettiBlast();
+          playBirthdayMelody();
+        }
+      }
+
+      canvas.addEventListener('mousedown', (e) => { isScratching = true; scratch(e); });
+      canvas.addEventListener('mousemove', scratch);
+      window.addEventListener('mouseup', () => { isScratching = false; });
+
+      canvas.addEventListener('touchstart', (e) => { isScratching = true; scratch(e); }, { passive: true });
+      canvas.addEventListener('touchmove', scratch, { passive: true });
+      canvas.addEventListener('touchend', () => { isScratching = false; });
+    }
+
+    let quizAnswers = {};
+    function nextQuestion(qNum, answer) {
+      quizAnswers[qNum] = answer;
+      playPopSound();
+
+      const currentQ = document.getElementById(`question-${qNum}`);
+      if (currentQ) currentQ.classList.add('hidden');
+
+      if (qNum < 3) {
+        const nextQ = document.getElementById(`question-${qNum + 1}`);
+        if (nextQ) nextQ.classList.remove('hidden');
+      } else {
+        showQuizResult();
+      }
+    }
+
+    function showQuizResult() {
+      const resultPanel = document.getElementById('quiz-result');
+      const emojiEl = document.getElementById('result-emoji');
+      const titleEl = document.getElementById('result-title');
+      const descEl = document.getElementById('result-desc');
+
+      if (resultPanel) resultPanel.classList.remove('hidden');
+
+      if (quizAnswers[1] === 'B' && quizAnswers[2] === 'B' && quizAnswers[3] === 'B') {
+        emojiEl.textContent = "🔍✨";
+        titleEl.textContent = "Certified Logic Expert";
+        descEl.textContent = "Maximum level diagnostics completed. You love absolute logic and clear details!";
+      } else if (quizAnswers[1] === 'B' || quizAnswers[3] === 'B') {
+        emojiEl.textContent = "📐💛";
+        titleEl.textContent = "Yellow Logic Specialist";
+        descEl.textContent = "You spot details in random conversations instantly. Extremely sharp mind!";
+      } else {
+        emojiEl.textContent = "⭐💛";
+        titleEl.textContent = "Joyful & Calm Star";
+        descEl.textContent = "You chose the peaceful and balanced options! Have a wonderful celebration!";
+      }
+
+      triggerConfettiBlast();
+    }
+
+    function resetQuiz() {
+      quizAnswers = {};
+      document.getElementById('quiz-result').classList.add('hidden');
+      document.getElementById('question-2').classList.add('hidden');
+      document.getElementById('question-3').classList.add('hidden');
+      document.getElementById('question-1').classList.remove('hidden');
+    }
+
+    function toggleEnvelope() {
+      const env = document.getElementById('envelope-element');
+      if (env) {
+        env.classList.toggle('is-open');
+        playPopSound();
+      }
+    }
+
+    function startCountdownTimer() {
+      const now = new Date();
+      let targetDate = new Date(now.getFullYear(), 7, 26, 0, 0, 0);
+
+      if (now > targetDate && !(now.getMonth() === 7 && now.getDate() === 26)) {
+        targetDate.setFullYear(targetDate.getFullYear() + 1);
+      }
+
+      function update() {
+        const currentDate = new Date();
+        
+        if (currentDate.getMonth() === 7 && currentDate.getDate() === 26) {
+          const wrapper = document.getElementById('countdown-wrapper');
+          const banner = document.getElementById('celebration-banner');
+          if (wrapper) wrapper.classList.add('hidden');
+          if (banner) banner.classList.remove('hidden');
+          return;
+        }
+
+        const diff = targetDate - currentDate;
+        if (diff <= 0) return;
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const mins = Math.floor((diff / (1000 * 60)) % 60);
+        const secs = Math.floor((diff / 1000) % 60);
+
+        const dEl = document.getElementById('count-days');
+        const hEl = document.getElementById('count-hours');
+        const mEl = document.getElementById('count-mins');
+        const sEl = document.getElementById('count-secs');
+
+        if (dEl) dEl.textContent = String(days).padStart(2, '0');
+        if (hEl) hEl.textContent = String(hours).padStart(2, '0');
+        if (mEl) mEl.textContent = String(mins).padStart(2, '0');
+        if (sEl) sEl.textContent = String(secs).padStart(2, '0');
+      }
+
+      update();
+      setInterval(update, 1000);
+    }
+
+    window.onload = function() {
+      startCountdownTimer();
+    };
+  </script>
+</body>
+</html>
