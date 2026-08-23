@@ -14,7 +14,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
 
   <script>
-    tailwind.config = {
+    window.tailwind = window.tailwind || {};
+    window.tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
@@ -36,8 +37,10 @@
           }
         }
       }
-    }
+    };
   </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
   <style>
     ::-webkit-scrollbar {
@@ -127,12 +130,76 @@
     .flame-active {
       animation: flicker 0.8s ease-in-out infinite alternate;
     }
+
+    /* Slow & Sequential Cinematic Drop Animations */
+    @keyframes dramaticDropSlow {
+      0% { transform: translateY(-240px) scale(0.6); opacity: 0; }
+      68% { transform: translateY(18px) scale(1.06); opacity: 1; }
+      85% { transform: translateY(-8px) scale(0.98); opacity: 1; }
+      100% { transform: translateY(0) scale(1); opacity: 1; }
+    }
+    .is-dropped-1 {
+      animation: dramaticDropSlow 1.6s cubic-bezier(0.25, 1, 0.35, 1.25) 0.4s forwards;
+    }
+    .is-dropped-2 {
+      animation: dramaticDropSlow 1.6s cubic-bezier(0.25, 1, 0.35, 1.25) 2.2s forwards;
+    }
+    .is-dropped-3 {
+      animation: dramaticDropSlow 1.6s cubic-bezier(0.25, 1, 0.35, 1.25) 4.0s forwards;
+    }
+
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(0deg); }
+      20% { transform: rotate(-10deg); }
+      40% { transform: rotate(10deg); }
+      60% { transform: rotate(-6deg); }
+      80% { transform: rotate(6deg); }
+    }
+    .animate-wiggle {
+      animation: wiggle 0.6s ease-in-out 1;
+    }
+
+    /* Butterfly Floating Animation */
+    @keyframes floatButterfly {
+      0% { transform: translate(0, 100vh) rotate(0deg) scale(0.9); opacity: 0; }
+      10% { opacity: 1; }
+      30% { transform: translate(calc(20vw + var(--rand-x)), 70vh) rotate(15deg) scale(1.1); }
+      50% { transform: translate(calc(-15vw + var(--rand-x)), 45vh) rotate(-15deg) scale(1); }
+      75% { transform: translate(calc(25vw + var(--rand-x)), 20vh) rotate(10deg) scale(1.05); }
+      90% { opacity: 1; }
+      100% { transform: translate(calc(10vw + var(--rand-x)), -80px) rotate(-10deg) scale(0.9); opacity: 0; }
+    }
+    @keyframes flapWings {
+      0%, 100% { transform: scaleX(1) scaleY(1); }
+      50% { transform: scaleX(0.2) scaleY(0.9); }
+    }
+    .floating-butterfly {
+      position: fixed;
+      pointer-events: auto;
+      z-index: 9999;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+      animation: floatButterfly 12s ease-in-out forwards;
+    }
+    .butterfly-wings {
+      animation: flapWings 0.28s ease-in-out infinite;
+      transform-origin: center;
+    }
+
+    /* Sparkle Particle on Click */
+    .sparkle-particle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 10000;
+      animation: fadeAndUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes fadeAndUp {
+      0% { opacity: 1; transform: translate(-50%, -50%) scale(0.6); }
+      100% { opacity: 0; transform: translate(-50%, -100px) scale(1.4); }
+    }
   </style>
 </head>
+<body class="bg-[#FFFDF0] text-gray-800 font-sans antialiased selection:bg-yellow-300 selection:text-amber-900 min-h-screen flex flex-col justify-between overflow-hidden" onclick="createClickSparkle(event)">
 
-<body class="bg-[#FFFDF0] text-gray-800 font-sans antialiased selection:bg-yellow-300 selection:text-amber-900 min-h-screen flex flex-col justify-between overflow-hidden">
-
-  <!-- WELCOME ENVELOPE OVERLAY -->
   <div id="intro-overlay" class="fixed inset-0 z-[100] bg-gradient-to-br from-yellow-300 via-amber-200 to-yellow-400 flex flex-col justify-center items-center transition-all duration-700 ease-in-out px-4">
     <div class="text-center space-y-6 max-w-sm mx-auto">
       <div class="space-y-2 animate-float">
@@ -185,51 +252,22 @@
 
   <main class="flex-grow">
     
-    <!-- HERO SECTION -->
-    <section class="relative py-16 sm:py-24 px-6 overflow-hidden bg-gradient-to-b from-yellow-100/60 via-amber-50/40 to-[#FFFDF0]">
+    <section class="relative py-20 sm:py-28 px-6 overflow-hidden bg-gradient-to-b from-yellow-100/60 via-amber-50/40 to-[#FFFDF0]">
       <div class="max-w-3xl mx-auto text-center space-y-8 relative z-10">
         
         <div class="inline-flex items-center gap-2 bg-yellow-200/80 text-amber-900 text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full border border-yellow-300 shadow-sm animate-float">
           <span>✨ August 26 Special ✨</span>
         </div>
 
-        <div class="space-y-4">
-          <h1 class="font-serif text-4xl sm:text-6xl font-extrabold text-amber-950 tracking-tight leading-tight">
-            Happy Birthday <br class="sm:hidden"><span class="text-amber-600 underline decoration-yellow-400 decoration-wavy decoration-2">Menahil!</span> 🎉
-          </h1>
-          <p class="text-sm sm:text-base text-amber-900/80 max-w-lg mx-auto font-medium">
-            Welcome to your dedicated yellow-themed celebration page! Packed with logical puzzles, scratch cards, and secret wishes.
-          </p>
-        </div>
-
-        <!-- COUNTDOWN TIMER CONTAINER -->
-        <div id="countdown-wrapper" class="bg-white/80 backdrop-blur-md p-6 rounded-3xl border-2 border-yellow-300 shadow-xl max-w-md mx-auto space-y-4">
-          <p class="text-xs font-bold text-amber-800 uppercase tracking-wider">Countdown to August 26 🎉</p>
-          <div class="grid grid-cols-4 gap-2 text-center">
-            <div class="bg-yellow-100/80 p-3 rounded-2xl border border-yellow-300">
-              <span id="count-days" class="block font-serif text-2xl font-bold text-amber-900">00</span>
-              <span class="text-[10px] uppercase tracking-wider font-semibold text-amber-700">Days</span>
-            </div>
-            <div class="bg-yellow-100/80 p-3 rounded-2xl border border-yellow-300">
-              <span id="count-hours" class="block font-serif text-2xl font-bold text-amber-900">00</span>
-              <span class="text-[10px] uppercase tracking-wider font-semibold text-amber-700">Hours</span>
-            </div>
-            <div class="bg-yellow-100/80 p-3 rounded-2xl border border-yellow-300">
-              <span id="count-mins" class="block font-serif text-2xl font-bold text-amber-900">00</span>
-              <span class="text-[10px] uppercase tracking-wider font-semibold text-amber-700">Mins</span>
-            </div>
-            <div class="bg-yellow-100/80 p-3 rounded-2xl border border-yellow-300">
-              <span id="count-secs" class="block font-serif text-2xl font-bold text-amber-900">00</span>
-              <span class="text-[10px] uppercase tracking-wider font-semibold text-amber-700">Secs</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- AUGUST 26 CELEBRATION BANNER -->
-        <div id="celebration-banner" class="hidden bg-amber-400 text-amber-950 p-6 rounded-3xl border-4 border-yellow-300 shadow-2xl max-w-md mx-auto space-y-2 animate-bounce">
-          <h2 class="font-serif text-2xl font-extrabold">🎉 Happy Birthday Menahil! 🎉</h2>
-          <p class="text-xs font-bold uppercase tracking-wider">August 26 Celebrations Are Live!</p>
-          <p class="text-xs">Have a wonderful and joyful day!</p>
+        <!-- SEQUENTIAL CINEMATIC DROP BANNER -->
+        <div id="celebration-banner" class="text-amber-950 p-4 sm:p-6 max-w-lg mx-auto space-y-3 relative mt-12">
+          <h2 class="font-serif text-2xl sm:text-4xl font-extrabold flex flex-nowrap justify-center items-center gap-1.5 sm:gap-2.5 whitespace-nowrap overflow-x-visible">
+            <span id="drop-word-1" class="inline-block opacity-0">🎉 Happy</span> 
+            <span id="drop-word-2" class="inline-block opacity-0">Birthday</span> 
+            <span id="drop-word-3" class="inline-block text-amber-900 opacity-0">Menahil! 🎉</span>
+          </h2>
+          <p class="text-xs font-bold uppercase tracking-wider animate-pulse pt-2 text-amber-800">August 26 Celebrations Are Live!</p>
+          <p class="text-xs font-medium text-amber-700">Have a wonderful and joyful day!</p>
         </div>
 
         <div>
@@ -241,18 +279,17 @@
       </div>
     </section>
 
-    <!-- CAKE SECTION -->
     <section id="cake-section" class="py-16 bg-white/60 border-y border-yellow-200/70">
       <div class="max-w-xl mx-auto px-6 text-center space-y-6">
         <div class="space-y-2">
           <span class="text-xs font-bold text-amber-800 bg-yellow-200/70 px-3 py-1 rounded-full uppercase tracking-wider">Make A Wish 🎂</span>
           <h2 class="font-serif text-3xl font-bold text-gray-800">Blow The Birthday Candles!</h2>
           <p class="text-xs sm:text-sm text-gray-600">
-            Click or tap on each candle flame to blow it out and unlock your wish!
+            Click or tap on each candle flame to blow it out and unlock your full birthday song!
           </p>
         </div>
 
-        <!-- VIRTUAL CAKE MODULE -->
+        <!-- VIRTUAL 3D MULTI-TIER CAKE -->
         <div class="relative max-w-xs mx-auto py-8 mt-4">
           
           <div class="flex justify-center gap-8 mb-[-8px] relative z-30">
@@ -305,13 +342,12 @@
         </div>
 
         <div id="cake-success-msg" class="hidden bg-yellow-100 border border-yellow-300 p-4 rounded-2xl text-amber-900 text-xs sm:text-sm font-semibold space-y-1">
-          <p class="text-base">🎉 Awesome! All candles blown! 🎉</p>
+          <p class="text-base">🎉 Awesome! All candles blown & song playing! 🎉</p>
           <p>May all your dreams and goals come true this year!</p>
         </div>
       </div>
     </section>
 
-    <!-- SCRATCH SECTION -->
     <section id="scratch-section" class="py-16 bg-gradient-to-b from-amber-50/60 to-yellow-100/40 border-y border-yellow-200">
       <div class="max-w-xl mx-auto px-6 text-center space-y-6">
         <div class="space-y-3">
@@ -338,7 +374,6 @@
       </div>
     </section>
 
-    <!-- QUIZ SECTION -->
     <section id="quiz-section" class="py-16 bg-gradient-to-b from-yellow-100/30 via-amber-50/50 to-[#FFFDF0]">
       <div class="max-w-xl mx-auto px-6 text-center space-y-6">
         <div class="space-y-2">
@@ -400,7 +435,6 @@
       </div>
     </section>
 
-    <!-- FLOATING VIRTUAL ENVELOPE SECTION -->
     <section id="letter-section" class="py-20 bg-gradient-to-b from-[#FFFDF0] via-yellow-100/30 to-[#FFFDF0] relative overflow-hidden">
       <div class="max-w-4xl mx-auto px-6 text-center space-y-8">
         <div class="space-y-3">
@@ -423,9 +457,12 @@
                     <span class="text-[10px] text-gray-400">August 26</span>
                   </div>
                   <h3 class="font-serif text-sm sm:text-base font-bold text-gray-800 mb-1.5">Dear Menahil, 🌸💛</h3>
-                  <div class="font-sans text-xs text-gray-600 leading-relaxed space-y-2">
-                    <p>
-                      Happy Birthday! I created this special yellow-themed webpage specifically to celebrate your upcoming big day on August 26th.
+                  <div class="font-sans text-xs text-gray-600 leading-relaxed space-y-3">
+                    <p class="text-center font-bold text-amber-900 text-sm" dir="rtl">
+                      سَلَامٌ عَلَيْكُم بِمَا صَبَرْتُمْ فَنِعْمَ عُقْبَى الدَّارِ
+                    </p>
+                    <p class="italic text-center text-amber-800 font-serif text-[11px] mb-2">
+                      "Peace be upon you for what you patiently endured. And excellent is the final home." — Qur'an 13:24
                     </p>
                     <p>
                       Your habit of finding precise logic in every little detail and your passionate expressions make every conversation lively and memorable.
@@ -449,6 +486,29 @@
       </div>
     </section>
 
+    <section class="py-16 bg-white/70 border-t border-yellow-200">
+      <div class="max-w-md mx-auto px-6 text-center space-y-6">
+        <div class="space-y-2">
+          <span class="text-xs font-bold text-amber-800 bg-yellow-200/80 px-3 py-1 rounded-full uppercase tracking-wider">Unbox Surprise 🎁</span>
+          <h2 class="font-serif text-3xl font-bold text-gray-800">Unwrap Your Gift!</h2>
+          <p class="text-xs sm:text-sm text-gray-600">Tap the gift box below to open your virtual birthday present!</p>
+        </div>
+
+        <div onclick="openGiftBox()" id="gift-box-wrapper" class="cursor-pointer group relative py-8 flex flex-col items-center justify-center">
+          <div id="gift-box" class="text-7xl sm:text-8xl transform group-hover:scale-110 transition-transform duration-300 drop-shadow-xl animate-bounce">
+            🎁
+          </div>
+          <div id="gift-message" class="hidden mt-4 bg-gradient-to-r from-amber-100 via-yellow-200 to-amber-100 p-6 rounded-2xl border-2 border-yellow-400 text-amber-950 shadow-xl space-y-2 max-w-sm">
+            <span class="text-3xl">🌟👑💛</span>
+            <h4 class="font-serif text-lg font-bold text-amber-900">VIP Birthday Badge Unlocked!</h4>
+            <p class="text-xs font-medium text-amber-800">
+              You are awarded the "Golden Joy & Brilliance" trophy! May your year ahead be full of peace, success, and smiles!
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer class="py-10 bg-yellow-100/50 border-t border-yellow-200 text-center space-y-3">
@@ -461,6 +521,8 @@
 
   <script>
     let audioCtx = null;
+    let bgSynthesizerInterval = null;
+    let isPlayingAudio = false;
 
     function getAudioContext() {
       if (!audioCtx) {
@@ -530,28 +592,51 @@
       }
     }
 
-    let isPlayingAudio = false;
     function toggleAudio() {
       const music = document.getElementById('bg-music');
       const label = document.getElementById('audio-label');
       const icon = document.getElementById('audio-icon');
 
-      if (!music) return;
-
       if (isPlayingAudio) {
-        music.pause();
+        if(music) music.pause();
+        clearInterval(bgSynthesizerInterval);
         isPlayingAudio = false;
         label.textContent = 'Music: Off';
         icon.textContent = '🎵';
       } else {
-        music.play().then(() => {
-          isPlayingAudio = true;
-          label.textContent = 'Music: On';
-          icon.textContent = '🎶';
-        }).catch(err => {
-          console.log("Audio play blocked until user interaction:", err);
-        });
+        isPlayingAudio = true;
+        label.textContent = 'Music: On';
+        icon.textContent = '🎶';
+        
+        if (music) {
+          music.play().catch(err => {
+            console.log("Playing web audio synthesizer fallback:", err);
+            startSynthBgLoop();
+          });
+        } else {
+          startSynthBgLoop();
+        }
       }
+    }
+
+    function startSynthBgLoop() {
+      clearInterval(bgSynthesizerInterval);
+      const ctx = getAudioContext();
+      const notes = [261.63, 329.63, 392.00, 523.25];
+      bgSynthesizerInterval = setInterval(() => {
+        if (!isPlayingAudio) return;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        const f = notes[Math.floor(Math.random() * notes.length)];
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(f, ctx.currentTime);
+        gain.gain.setValueAtTime(0.03, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 1.5);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 1.5);
+      }, 1800);
     }
 
     function openWelcomeEnvelope() {
@@ -561,19 +646,18 @@
       if(env) env.classList.add('is-open');
       playPopSound();
       
-      const music = document.getElementById('bg-music');
-      if(music) {
-        music.play().then(() => {
-          isPlayingAudio = true;
-          document.getElementById('audio-label').textContent = 'Music: On';
-          document.getElementById('audio-icon').textContent = '🎶';
-        }).catch(e => console.log('Autoplay blocked'));
-      }
+      toggleAudio();
       
       setTimeout(() => {
         overlay.style.opacity = '0';
         triggerConfettiBlast();
         
+        document.getElementById('drop-word-1').classList.add('is-dropped-1');
+        document.getElementById('drop-word-2').classList.add('is-dropped-2');
+        document.getElementById('drop-word-3').classList.add('is-dropped-3');
+        
+        startButterflySpawner();
+
         setTimeout(() => {
           overlay.style.display = 'none';
           document.body.classList.remove('overflow-hidden');
@@ -684,56 +768,44 @@
 
       canvas.addEventListener('touchstart', (e) => { isScratching = true; scratch(e); }, { passive: true });
       canvas.addEventListener('touchmove', scratch, { passive: true });
-      canvas.addEventListener('touchend', () => { isScratching = false; });
+      window.addEventListener('touchend', () => { isScratching = false; });
     }
 
     let quizAnswers = {};
+
     function nextQuestion(qNum, answer) {
       quizAnswers[qNum] = answer;
       playPopSound();
-
-      const currentQ = document.getElementById(`question-${qNum}`);
-      if (currentQ) currentQ.classList.add('hidden');
-
+      const currentElem = document.getElementById(`question-${qNum}`);
+      if (currentElem) currentElem.classList.add('hidden');
+      
       if (qNum < 3) {
-        const nextQ = document.getElementById(`question-${qNum + 1}`);
-        if (nextQ) nextQ.classList.remove('hidden');
+        const nextElem = document.getElementById(`question-${qNum + 1}`);
+        if (nextElem) nextElem.classList.remove('hidden');
       } else {
         showQuizResult();
       }
     }
 
     function showQuizResult() {
-      const resultPanel = document.getElementById('quiz-result');
-      const emojiEl = document.getElementById('result-emoji');
-      const titleEl = document.getElementById('result-title');
-      const descEl = document.getElementById('result-desc');
-
-      if (resultPanel) resultPanel.classList.remove('hidden');
-
-      if (quizAnswers[1] === 'B' && quizAnswers[2] === 'B' && quizAnswers[3] === 'B') {
-        emojiEl.textContent = "🔍✨";
-        titleEl.textContent = "Certified Logic Expert";
-        descEl.textContent = "Maximum level diagnostics completed. You love absolute logic and clear details!";
-      } else if (quizAnswers[1] === 'B' || quizAnswers[3] === 'B') {
-        emojiEl.textContent = "📐💛";
-        titleEl.textContent = "Yellow Logic Specialist";
-        descEl.textContent = "You spot details in random conversations instantly. Extremely sharp mind!";
-      } else {
-        emojiEl.textContent = "⭐💛";
-        titleEl.textContent = "Joyful & Calm Star";
-        descEl.textContent = "You chose the peaceful and balanced options! Have a wonderful celebration!";
+      const resultElem = document.getElementById('quiz-result');
+      if (resultElem) {
+        resultElem.classList.remove('hidden');
+        triggerConfettiBlast();
+        playBirthdayMelody();
       }
-
-      triggerConfettiBlast();
     }
 
     function resetQuiz() {
       quizAnswers = {};
       document.getElementById('quiz-result').classList.add('hidden');
-      document.getElementById('question-2').classList.add('hidden');
-      document.getElementById('question-3').classList.add('hidden');
-      document.getElementById('question-1').classList.remove('hidden');
+      for(let i = 1; i <= 3; i++) {
+        const q = document.getElementById(`question-${i}`);
+        if(q) {
+          if(i === 1) q.classList.remove('hidden');
+          else q.classList.add('hidden');
+        }
+      }
     }
 
     function toggleEnvelope() {
@@ -741,54 +813,87 @@
       if (env) {
         env.classList.toggle('is-open');
         playPopSound();
-      }
-    }
-
-    function startCountdownTimer() {
-      const now = new Date();
-      let targetDate = new Date(now.getFullYear(), 7, 26, 0, 0, 0);
-
-      if (now > targetDate && !(now.getMonth() === 7 && now.getDate() === 26)) {
-        targetDate.setFullYear(targetDate.getFullYear() + 1);
-      }
-
-      function update() {
-        const currentDate = new Date();
-        
-        if (currentDate.getMonth() === 7 && currentDate.getDate() === 26) {
-          const wrapper = document.getElementById('countdown-wrapper');
-          const banner = document.getElementById('celebration-banner');
-          if (wrapper) wrapper.classList.add('hidden');
-          if (banner) banner.classList.remove('hidden');
-          return;
+        if (env.classList.contains('is-open')) {
+          triggerConfettiBlast();
         }
-
-        const diff = targetDate - currentDate;
-        if (diff <= 0) return;
-
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        const mins = Math.floor((diff / (1000 * 60)) % 60);
-        const secs = Math.floor((diff / 1000) % 60);
-
-        const dEl = document.getElementById('count-days');
-        const hEl = document.getElementById('count-hours');
-        const mEl = document.getElementById('count-mins');
-        const sEl = document.getElementById('count-secs');
-
-        if (dEl) dEl.textContent = String(days).padStart(2, '0');
-        if (hEl) hEl.textContent = String(hours).padStart(2, '0');
-        if (mEl) mEl.textContent = String(mins).padStart(2, '0');
-        if (sEl) sEl.textContent = String(secs).padStart(2, '0');
       }
-
-      update();
-      setInterval(update, 1000);
     }
 
-    window.onload = function() {
-      startCountdownTimer();
-    };
+    let isGiftOpened = false;
+    function openGiftBox() {
+      if (isGiftOpened) return;
+      isGiftOpened = true;
+      playPopSound();
+      triggerConfettiBlast();
+      playBirthdayMelody();
+      
+      const giftBox = document.getElementById('gift-box');
+      const giftMsg = document.getElementById('gift-message');
+      if(giftBox) giftBox.innerHTML = '✨🎁✨';
+      if(giftMsg) giftMsg.classList.remove('hidden');
+    }
+
+    function spawnButterfly() {
+      const butterfly = document.createElement('div');
+      butterfly.className = 'floating-butterfly';
+      
+      const randomX = Math.floor(Math.random() * 60) - 30;
+      const startLeft = Math.floor(Math.random() * 80) + 10;
+      butterfly.style.left = startLeft + 'vw';
+      butterfly.style.setProperty('--rand-x', randomX + 'vw');
+      
+      butterfly.innerHTML = `
+        <div class="butterfly-wings text-2xl sm:text-3xl filter drop-shadow-md cursor-pointer select-none" onclick="popButterfly(this)">
+          🦋
+        </div>
+      `;
+      
+      document.body.appendChild(butterfly);
+      
+      setTimeout(() => {
+        if (butterfly && butterfly.parentNode) {
+          butterfly.parentNode.removeChild(butterfly);
+        }
+      }, 12000);
+    }
+
+    function popButterfly(elem) {
+      playPopSound();
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 15,
+          spread: 40,
+          origin: {
+            x: elem.getBoundingClientRect().left / window.innerWidth,
+            y: elem.getBoundingClientRect().top / window.innerHeight
+          },
+          colors: ['#FDE047', '#EAB308', '#FFFFFF']
+        });
+      }
+      if (elem.parentNode && elem.parentNode.parentNode) {
+        elem.parentNode.parentNode.removeChild(elem.parentNode);
+      }
+    }
+
+    function startButterflySpawner() {
+      for(let i=0; i<3; i++) {
+        setTimeout(spawnButterfly, i * 1500);
+      }
+      setInterval(spawnButterfly, 4500);
+    }
+
+    function createClickSparkle(e) {
+      const p = document.createElement('div');
+      p.className = 'sparkle-particle text-lg select-none';
+      p.style.left = e.clientX + 'px';
+      p.style.top = e.clientY + 'px';
+      const sparkles = ['✨', '⭐', '💛', '🌟', '🌸'];
+      p.textContent = sparkles[Math.floor(Math.random() * sparkles.length)];
+      document.body.appendChild(p);
+      setTimeout(() => {
+        if (p.parentNode) p.parentNode.removeChild(p);
+      }, 1000);
+    }
   </script>
 </body>
 </html>
