@@ -3,63 +3,64 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Birthday Menahil! ☀️💛</title>
+  <title>Happy Birthday Ansuu! 🌸✨👑</title>
 
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Confetti Canvas Library -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
 
   <script>
-    window.tailwind = window.tailwind || {};
-    window.tailwind.config = {
+    tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
             sans: ['Inter', 'sans-serif'],
             serif: ['Playfair Display', 'serif'],
+            arabic: ['Amiri', 'serif'],
           },
           colors: {
-            brandYellow: {
-              50: '#FEFCE8',
-              100: '#FEF08A',
-              200: '#FDE047',
-              300: '#FACC15',
-              400: '#EAB308',
-              500: '#CA8A04',
-              600: '#A16207',
-              700: '#854D0E',
-              800: '#713F12',
+            brandRose: {
+              50: '#FFF1F2',
+              100: '#FFE4E6',
+              200: '#FECDD3',
+              300: '#FDA4AF',
+              400: '#FB7185',
+              500: '#F43F5E',
+              600: '#E11D48',
+              700: '#BE123C',
+              800: '#9F1239',
             }
           }
         }
       }
-    };
+    }
   </script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
   <style>
+    /* Custom Scrollbar */
     ::-webkit-scrollbar {
       width: 8px;
     }
     ::-webkit-scrollbar-track {
-      background: #FEFCE8;
+      background: #FFF1F2;
     }
     ::-webkit-scrollbar-thumb {
-      background: #FACC15;
+      background: #FB7185;
       border-radius: 9999px;
     }
     ::-webkit-scrollbar-thumb:hover {
-      background: #EAB308;
+      background: #F43F5E;
     }
 
     @keyframes floatSlow {
       0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-12px) rotate(2deg); }
+      50% { transform: translateY(-10px) rotate(2deg); }
     }
     .animate-float {
       animation: floatSlow 4s ease-in-out infinite;
@@ -74,16 +75,16 @@
       width: 320px;
       height: 220px;
       margin: 0 auto;
-      background: #FDE047;
-      border: 3px solid #EAB308;
+      background: #FECDD3;
+      border: 3px solid #FB7185;
       border-radius: 16px;
-      box-shadow: 0 15px 30px -10px rgba(234, 179, 8, 0.35);
+      box-shadow: 0 15px 30px -10px rgba(244, 63, 94, 0.35);
       cursor: pointer;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     .envelope-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 20px 35px -8px rgba(234, 179, 8, 0.45);
+      box-shadow: 0 20px 35px -8px rgba(244, 63, 94, 0.45);
     }
     .envelope-flap {
       position: absolute;
@@ -93,7 +94,7 @@
       height: 0;
       border-left: 160px solid transparent;
       border-right: 160px solid transparent;
-      border-top: 110px solid #EAB308;
+      border-top: 110px solid #FB7185;
       transform-origin: top;
       transition: transform 0.5s ease;
       z-index: 4;
@@ -108,142 +109,142 @@
       right: 12px;
       bottom: 12px;
       top: 12px;
-      background: #FFFDF0;
+      background: #FFFDF9;
       border-radius: 12px;
       padding: 16px;
-      border: 2px dashed #FACC15;
+      border: 2px dashed #FDA4AF;
       transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), height 0.6s ease;
       z-index: 2;
       box-shadow: 0 4px 15px rgba(0,0,0,0.06);
     }
     .envelope-card.is-open .letter-sheet {
-      transform: translateY(-110px);
-      height: 340px;
+      transform: translateY(-120px);
+      height: 380px;
       z-index: 10;
       box-shadow: 0 20px 40px rgba(0,0,0,0.15);
     }
 
+    /* Candle Flame Animation */
     @keyframes flicker {
       0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.8; transform: scale(1.15) translateY(-2px); }
+      50% { opacity: 0.8; transform: scale(1.18) translateY(-2px); }
     }
     .flame-active {
-      animation: flicker 0.8s ease-in-out infinite alternate;
+      animation: flicker 0.7s ease-in-out infinite alternate;
     }
 
-    /* Slow & Sequential Cinematic Drop Animations */
+    /* Sequential Drop Animations */
     @keyframes dramaticDropSlow {
-      0% { transform: translateY(-240px) scale(0.6); opacity: 0; }
-      68% { transform: translateY(18px) scale(1.06); opacity: 1; }
-      85% { transform: translateY(-8px) scale(0.98); opacity: 1; }
+      0% { transform: translateY(-180px) scale(0.6); opacity: 0; }
+      68% { transform: translateY(14px) scale(1.05); opacity: 1; }
+      85% { transform: translateY(-6px) scale(0.98); opacity: 1; }
       100% { transform: translateY(0) scale(1); opacity: 1; }
     }
     .is-dropped-1 {
-      animation: dramaticDropSlow 1.6s cubic-bezier(0.25, 1, 0.35, 1.25) 0.4s forwards;
+      animation: dramaticDropSlow 1.4s cubic-bezier(0.25, 1, 0.35, 1.25) 0.3s forwards;
     }
     .is-dropped-2 {
-      animation: dramaticDropSlow 1.6s cubic-bezier(0.25, 1, 0.35, 1.25) 2.2s forwards;
+      animation: dramaticDropSlow 1.4s cubic-bezier(0.25, 1, 0.35, 1.25) 1.5s forwards;
     }
     .is-dropped-3 {
-      animation: dramaticDropSlow 1.6s cubic-bezier(0.25, 1, 0.35, 1.25) 4.0s forwards;
+      animation: dramaticDropSlow 1.4s cubic-bezier(0.25, 1, 0.35, 1.25) 2.7s forwards;
     }
 
-    @keyframes wiggle {
-      0%, 100% { transform: rotate(0deg); }
-      20% { transform: rotate(-10deg); }
-      40% { transform: rotate(10deg); }
-      60% { transform: rotate(-6deg); }
-      80% { transform: rotate(6deg); }
-    }
-    .animate-wiggle {
-      animation: wiggle 0.6s ease-in-out 1;
+    /* Organic Butterfly Path Animation */
+    @keyframes organicButterflyPath {
+      0% {
+        transform: translate(var(--start-x), 105vh) rotate(0deg) scale(0.7);
+        opacity: 0;
+      }
+      15% {
+        opacity: 1;
+        transform: translate(calc(var(--start-x) + 60px), 80vh) rotate(22deg) scale(1.05);
+      }
+      35% {
+        transform: translate(calc(var(--start-x) - 70px), 55vh) rotate(-18deg) scale(1.15);
+      }
+      55% {
+        transform: translate(calc(var(--start-x) + 90px), 35vh) rotate(25deg) scale(1);
+      }
+      75% {
+        transform: translate(calc(var(--start-x) - 50px), 15vh) rotate(-12deg) scale(1.08);
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translate(calc(var(--start-x) + 40px), -80px) rotate(15deg) scale(0.75);
+        opacity: 0;
+      }
     }
 
-    /* Butterfly Floating Animation */
-    @keyframes floatButterfly {
-      0% { transform: translate(0, 100vh) rotate(0deg) scale(0.9); opacity: 0; }
-      10% { opacity: 1; }
-      30% { transform: translate(calc(20vw + var(--rand-x)), 70vh) rotate(15deg) scale(1.1); }
-      50% { transform: translate(calc(-15vw + var(--rand-x)), 45vh) rotate(-15deg) scale(1); }
-      75% { transform: translate(calc(25vw + var(--rand-x)), 20vh) rotate(10deg) scale(1.05); }
-      90% { opacity: 1; }
-      100% { transform: translate(calc(10vw + var(--rand-x)), -80px) rotate(-10deg) scale(0.9); opacity: 0; }
-    }
     @keyframes flapWings {
       0%, 100% { transform: scaleX(1) scaleY(1); }
-      50% { transform: scaleX(0.2) scaleY(0.9); }
-    }
-    .floating-butterfly {
-      position: fixed;
-      pointer-events: auto;
-      z-index: 9999;
-      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
-      animation: floatButterfly 12s ease-in-out forwards;
-    }
-    .butterfly-wings {
-      animation: flapWings 0.28s ease-in-out infinite;
-      transform-origin: center;
+      50% { transform: scaleX(0.12) scaleY(0.92); }
     }
 
-    /* Sparkle Particle on Click */
-    .sparkle-particle {
+    .floating-butterfly {
       position: fixed;
       pointer-events: none;
-      z-index: 10000;
-      animation: fadeAndUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      z-index: 9999;
+      filter: drop-shadow(0 8px 16px rgba(244, 63, 94, 0.35));
+      animation: organicButterflyPath var(--duration) ease-in-out forwards;
     }
-    @keyframes fadeAndUp {
-      0% { opacity: 1; transform: translate(-50%, -50%) scale(0.6); }
-      100% { opacity: 0; transform: translate(-50%, -100px) scale(1.4); }
+
+    .butterfly-wings {
+      animation: flapWings var(--flap-speed) ease-in-out infinite;
+      transform-origin: center;
+      display: inline-block;
     }
   </style>
 </head>
-<body class="bg-[#FFFDF0] text-gray-800 font-sans antialiased selection:bg-yellow-300 selection:text-amber-900 min-h-screen flex flex-col justify-between overflow-hidden" onclick="createClickSparkle(event)">
+<body class="bg-[#FFFDF9] text-gray-800 font-sans antialiased selection:bg-rose-200 selection:text-rose-900 min-h-screen flex flex-col justify-between overflow-hidden">
 
-  <div id="intro-overlay" class="fixed inset-0 z-[100] bg-gradient-to-br from-yellow-300 via-amber-200 to-yellow-400 flex flex-col justify-center items-center transition-all duration-700 ease-in-out px-4">
+  <div id="intro-overlay" class="fixed inset-0 z-[100] bg-gradient-to-br from-rose-200 via-pink-100 to-rose-300 flex flex-col justify-center items-center transition-all duration-700 ease-in-out px-4">
     <div class="text-center space-y-6 max-w-sm mx-auto">
       <div class="space-y-2 animate-float">
-        <span class="bg-yellow-100/90 text-amber-900 font-bold text-xs uppercase tracking-widest px-4 py-1.5 rounded-full border border-yellow-300 shadow-sm inline-block">✨ Special Delivery ✨</span>
-        <h1 class="font-serif text-3xl sm:text-4xl font-extrabold text-amber-950 tracking-tight">A Birthday Letter For Menahil</h1>
+        <span class="bg-rose-100/90 text-rose-900 font-bold text-xs uppercase tracking-widest px-4 py-1.5 rounded-full border border-rose-300 shadow-sm inline-block">✨ World's #1 Bestie Special ✨</span>
+        <h1 class="font-serif text-3xl sm:text-4xl font-extrabold text-rose-950 tracking-tight">A Birthday Letter For Ansuu 🌸</h1>
       </div>
 
-      <!-- Envelope Card -->
+      <!-- Welcome Envelope Card -->
       <div class="envelope-container py-4">
         <div id="welcome-envelope" onclick="openWelcomeEnvelope()" class="envelope-card cursor-pointer transform hover:scale-105 transition-all duration-300">
           <div class="envelope-flap"></div>
           <div class="letter-sheet text-left flex flex-col justify-between select-none overflow-hidden">
             <div class="p-2">
-              <div class="flex justify-between items-center pb-1 mb-1 border-b border-dashed border-amber-300">
-                <span class="font-serif text-[11px] font-bold italic text-amber-700">Birthday Envelope</span>
-                <span class="text-[9px] text-gray-400">August 26</span>
+              <div class="flex justify-between items-center pb-1 mb-1 border-b border-dashed border-rose-300">
+                <span class="font-serif text-[11px] font-bold italic text-rose-700">VIP Express Delivery 💌</span>
+                <span class="text-[9px] text-gray-400">5.1 ft Cutest Bestie</span>
               </div>
-              <p class="font-serif text-xs font-bold text-gray-800 mb-1">To Menahil 🌸💛</p>
+              <p class="font-serif text-xs font-bold text-gray-800 mb-1">To My Dearest Ansuu ❤️</p>
               <p class="font-sans text-[11px] text-gray-600 leading-tight">
-                Tap to break the seal and open your special birthday surprise page...
+                Tap to break the seal and unlock your royal birthday surprise page...
               </p>
             </div>
-            <div class="pt-1 border-t border-dashed border-amber-300 text-center">
-              <span class="font-serif italic text-[10px] text-amber-700 font-bold">Tap to Open ✉️</span>
+            <div class="pt-1 border-t border-dashed border-rose-300 text-center">
+              <span class="font-serif italic text-[10px] text-rose-700 font-bold">Tap to Open Envelope ✉️</span>
             </div>
           </div>
         </div>
       </div>
-      <p class="text-xs text-amber-950 font-semibold animate-pulse">Tap the envelope to open your surprise! 💌</p>
+      <p class="text-xs text-rose-950 font-semibold animate-pulse">Tap the envelope to start the magic! 🌸</p>
     </div>
   </div>
 
-  <audio id="bg-music" loop>
+  <!-- Background Music Element -->
+  <audio id="bg-music" loop preload="auto">
     <source src="music.mp3" type="audio/mpeg">
   </audio>
 
-  <header class="sticky top-0 z-50 backdrop-blur-md bg-yellow-100/70 border-b border-yellow-200/80 px-6 py-3.5 transition-all">
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-rose-100/80 border-b border-rose-200/80 px-6 py-3.5 transition-all">
     <div class="max-w-5xl mx-auto flex justify-between items-center">
       <div class="flex items-center gap-2">
-        <span class="text-xl">💛</span>
-        <span class="font-serif font-bold text-amber-900 text-base sm:text-lg tracking-tight">Menahil's Day ✨</span>
+        <span class="text-xl">🌸</span>
+        <span class="font-serif font-bold text-rose-950 text-base sm:text-lg tracking-tight">Ansuu's Birthday Magic ✨</span>
       </div>
       <div class="flex items-center gap-2">
-        <button onclick="toggleAudio()" id="audio-toggle-btn" class="bg-yellow-300/80 hover:bg-yellow-400 text-amber-900 text-xs font-bold px-3.5 py-1.5 rounded-full border border-yellow-400/60 shadow-sm transition-all flex items-center gap-1.5">
+        <button onclick="toggleAudio()" id="audio-toggle-btn" class="bg-rose-200/90 hover:bg-rose-300 text-rose-900 text-xs font-bold px-3.5 py-1.5 rounded-full border border-rose-300 shadow-sm transition-all flex items-center gap-1.5">
           <span id="audio-icon">🎵</span> <span id="audio-label">Music: Off</span>
         </button>
       </div>
@@ -252,87 +253,91 @@
 
   <main class="flex-grow">
     
-    <section class="relative py-20 sm:py-28 px-6 overflow-hidden bg-gradient-to-b from-yellow-100/60 via-amber-50/40 to-[#FFFDF0]">
+    <!-- HERO SECTION -->
+    <section class="relative py-16 sm:py-24 px-6 overflow-hidden bg-gradient-to-b from-rose-100/70 via-pink-50/40 to-[#FFFDF9]">
       <div class="max-w-3xl mx-auto text-center space-y-8 relative z-10">
         
-        <div class="inline-flex items-center gap-2 bg-yellow-200/80 text-amber-900 text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full border border-yellow-300 shadow-sm animate-float">
-          <span>✨ August 26 Special ✨</span>
+        <div class="inline-flex items-center gap-2 bg-rose-200/90 text-rose-900 text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full border border-rose-300 shadow-sm animate-float">
+          <span>👑 5.1 ft Pocket-Sized Dynamite • 100% Cutest Bestie 👑</span>
         </div>
 
         <!-- SEQUENTIAL CINEMATIC DROP BANNER -->
-        <div id="celebration-banner" class="text-amber-950 p-4 sm:p-6 max-w-lg mx-auto space-y-3 relative mt-12">
-          <h2 class="font-serif text-2xl sm:text-4xl font-extrabold flex flex-nowrap justify-center items-center gap-1.5 sm:gap-2.5 whitespace-nowrap overflow-x-visible">
+        <div id="celebration-banner" class="text-rose-950 p-4 sm:p-6 max-w-2xl mx-auto space-y-3 relative mt-6">
+          <h1 class="font-serif text-3xl sm:text-5xl font-extrabold flex flex-nowrap justify-center items-center gap-2 sm:gap-3 whitespace-nowrap overflow-x-visible">
             <span id="drop-word-1" class="inline-block opacity-0">🎉 Happy</span> 
             <span id="drop-word-2" class="inline-block opacity-0">Birthday</span> 
-            <span id="drop-word-3" class="inline-block text-amber-900 opacity-0">Menahil! 🎉</span>
-          </h2>
-          <p class="text-xs font-bold uppercase tracking-wider animate-pulse pt-2 text-amber-800">August 26 Celebrations Are Live!</p>
-          <p class="text-xs font-medium text-amber-700">Have a wonderful and joyful day!</p>
+            <span id="drop-word-3" class="inline-block text-rose-700 opacity-0">Ansuu! 👑❤️</span>
+          </h1>
+          <p class="text-xs font-bold uppercase tracking-wider animate-pulse pt-2 text-rose-800">To the most pyaari, hilarious, cute & 5.1 ft fiery Bestie!</p>
+          <p class="text-xs sm:text-sm font-medium text-rose-700 max-w-lg mx-auto">
+            (Thoda late wish kar raha hu so so sorry 🥺, par tumhare jaisi funny aur dil ki saaf bestie ke liye wishes hamesha special hoti hain! 🌸💥)
+          </p>
         </div>
 
         <div>
-          <button onclick="startSurprise()" class="inline-flex items-center gap-2 bg-gradient-to-r from-yellow-400 via-amber-400 to-yellow-500 hover:from-yellow-500 hover:to-amber-600 text-amber-950 font-extrabold text-sm sm:text-base px-8 py-4 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 border-2 border-yellow-200">
-            <span>Explore Magic 🎉</span>
+          <button onclick="startSurprise()" class="inline-flex items-center gap-2 bg-gradient-to-r from-rose-400 via-pink-400 to-rose-500 hover:from-rose-500 hover:to-pink-600 text-white font-extrabold text-sm sm:text-base px-8 py-4 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 border-2 border-rose-200">
+            <span>Blow The Candles 🎉</span>
           </button>
         </div>
 
       </div>
     </section>
 
-    <section id="cake-section" class="py-16 bg-white/60 border-y border-yellow-200/70">
+    <section id="cake-section" class="py-16 bg-white/80 border-y border-rose-200/70">
       <div class="max-w-xl mx-auto px-6 text-center space-y-6">
         <div class="space-y-2">
-          <span class="text-xs font-bold text-amber-800 bg-yellow-200/70 px-3 py-1 rounded-full uppercase tracking-wider">Make A Wish 🎂</span>
-          <h2 class="font-serif text-3xl font-bold text-gray-800">Blow The Birthday Candles!</h2>
+          <span class="text-xs font-bold text-rose-800 bg-rose-100/90 px-3 py-1 rounded-full uppercase tracking-wider">Make A Wish 🎂</span>
+          <h2 class="font-serif text-3xl font-bold text-gray-800">Blow The Candles, Ansuu!</h2>
           <p class="text-xs sm:text-sm text-gray-600">
-            Click or tap on each candle flame to blow it out and unlock your full birthday song!
+            Tap each candle flame to blow it out and start your official birthday celebration melody!
           </p>
         </div>
 
-        <!-- VIRTUAL 3D MULTI-TIER CAKE -->
+        <!-- VIRTUAL MULTI-TIER CAKE -->
         <div class="relative max-w-xs mx-auto py-8 mt-4">
           
+          <!-- Candles Row -->
           <div class="flex justify-center gap-8 mb-[-8px] relative z-30">
             <!-- Candle 1 -->
             <div onclick="blowCandle(1)" class="cursor-pointer group flex flex-col items-center">
-              <div id="flame-1" class="w-4 h-6 bg-gradient-to-t from-amber-500 via-yellow-300 to-white rounded-full shadow-lg shadow-amber-400/80 flame-active transition-all"></div>
-              <div class="w-3 h-12 bg-gradient-to-b from-red-400 to-red-500 rounded-sm border border-red-600 shadow-sm"></div>
+              <div id="flame-1" class="w-4 h-6 bg-gradient-to-t from-amber-500 via-rose-300 to-white rounded-full shadow-lg shadow-rose-400/80 flame-active transition-all"></div>
+              <div class="w-3 h-12 bg-gradient-to-b from-rose-400 to-rose-500 rounded-sm border border-rose-600 shadow-sm"></div>
             </div>
             <!-- Candle 2 -->
             <div onclick="blowCandle(2)" class="cursor-pointer group flex flex-col items-center">
-              <div id="flame-2" class="w-4 h-6 bg-gradient-to-t from-amber-500 via-yellow-300 to-white rounded-full shadow-lg shadow-amber-400/80 flame-active transition-all"></div>
-              <div class="w-3 h-14 bg-gradient-to-b from-blue-400 to-blue-500 rounded-sm border border-blue-600 shadow-sm"></div>
+              <div id="flame-2" class="w-4 h-6 bg-gradient-to-t from-amber-500 via-pink-300 to-white rounded-full shadow-lg shadow-amber-400/80 flame-active transition-all"></div>
+              <div class="w-3 h-14 bg-gradient-to-b from-purple-400 to-purple-500 rounded-sm border border-purple-600 shadow-sm"></div>
             </div>
             <!-- Candle 3 -->
             <div onclick="blowCandle(3)" class="cursor-pointer group flex flex-col items-center">
-              <div id="flame-3" class="w-4 h-6 bg-gradient-to-t from-amber-500 via-yellow-300 to-white rounded-full shadow-lg shadow-amber-400/80 flame-active transition-all"></div>
-              <div class="w-3 h-12 bg-gradient-to-b from-green-400 to-green-500 rounded-sm border border-green-600 shadow-sm"></div>
+              <div id="flame-3" class="w-4 h-6 bg-gradient-to-t from-amber-500 via-rose-300 to-white rounded-full shadow-lg shadow-rose-400/80 flame-active transition-all"></div>
+              <div class="w-3 h-12 bg-gradient-to-b from-pink-400 to-pink-500 rounded-sm border border-pink-600 shadow-sm"></div>
             </div>
           </div>
 
           <!-- CAKE BODY -->
           <div class="relative flex flex-col items-center z-20">
             <!-- Top Cream Tier -->
-            <div class="w-40 h-16 bg-[#FFFDF0] rounded-t-xl border-x-4 border-t-4 border-yellow-200 relative shadow-inner z-20 overflow-hidden">
-               <div class="absolute top-2 left-4 w-2 h-1 bg-pink-400 rounded-full rotate-45"></div>
-               <div class="absolute top-4 right-8 w-2 h-1 bg-blue-400 rounded-full -rotate-12"></div>
-               <div class="absolute top-8 left-10 w-2 h-1 bg-green-400 rounded-full rotate-90"></div>
+            <div class="w-40 h-16 bg-[#FFF8F8] rounded-t-xl border-x-4 border-t-4 border-rose-200 relative shadow-inner z-20 overflow-hidden">
+               <div class="absolute top-2 left-4 w-2 h-1 bg-rose-400 rounded-full rotate-45"></div>
+               <div class="absolute top-4 right-8 w-2 h-1 bg-amber-400 rounded-full -rotate-12"></div>
+               <div class="absolute top-8 left-10 w-2 h-1 bg-pink-400 rounded-full rotate-90"></div>
                <div class="absolute bottom-2 right-4 w-2 h-1 bg-purple-400 rounded-full rotate-12"></div>
             </div>
             
-            <!-- Chocolate Frosting Drip -->
+            <!-- Strawberry Cream Drips -->
             <div class="w-44 flex justify-between absolute top-14 z-30">
-               <div class="w-6 h-8 bg-amber-700 rounded-b-full"></div>
-               <div class="w-8 h-6 bg-amber-700 rounded-b-full mt-[-2px]"></div>
-               <div class="w-5 h-9 bg-amber-700 rounded-b-full"></div>
-               <div class="w-9 h-7 bg-amber-700 rounded-b-full mt-[-4px]"></div>
-               <div class="w-6 h-8 bg-amber-700 rounded-b-full"></div>
+               <div class="w-6 h-8 bg-rose-600 rounded-b-full"></div>
+               <div class="w-8 h-6 bg-rose-600 rounded-b-full mt-[-2px]"></div>
+               <div class="w-5 h-9 bg-rose-600 rounded-b-full"></div>
+               <div class="w-9 h-7 bg-rose-600 rounded-b-full mt-[-4px]"></div>
+               <div class="w-6 h-8 bg-rose-600 rounded-b-full"></div>
             </div>
 
-            <!-- Bottom Yellow Sponge Tier -->
-            <div class="w-56 h-24 bg-gradient-to-r from-yellow-300 via-yellow-200 to-yellow-300 rounded-lg border-4 border-yellow-400 shadow-xl flex items-center justify-center relative z-10">
-               <div class="text-center font-serif text-lg font-extrabold text-amber-800 tracking-wider bg-white/50 px-4 py-1 rounded-full border border-yellow-400/50 shadow-sm">
-                 HAPPY BIRTHDAY
+            <!-- Bottom Rose Gold Tier -->
+            <div class="w-56 h-24 bg-gradient-to-r from-rose-300 via-pink-200 to-rose-300 rounded-lg border-4 border-rose-400 shadow-xl flex items-center justify-center relative z-10">
+               <div class="text-center font-serif text-lg font-extrabold text-rose-900 tracking-wider bg-white/80 px-4 py-1 rounded-full border border-rose-300/60 shadow-sm">
+                 HAPPY BIRTHDAY ANSUU
                </div>
             </div>
             
@@ -341,32 +346,32 @@
           </div>
         </div>
 
-        <div id="cake-success-msg" class="hidden bg-yellow-100 border border-yellow-300 p-4 rounded-2xl text-amber-900 text-xs sm:text-sm font-semibold space-y-1">
-          <p class="text-base">🎉 Awesome! All candles blown & song playing! 🎉</p>
-          <p>May all your dreams and goals come true this year!</p>
+        <div id="cake-success-msg" class="hidden bg-rose-100 border border-rose-300 p-4 rounded-2xl text-rose-900 text-xs sm:text-sm font-semibold space-y-1">
+          <p class="text-base">🎉 All candles blown! Wish granted, Ansuu! 👑✨</p>
+          <p>May Allah keep you always happy, healthy, and filled with laughter!</p>
         </div>
       </div>
     </section>
 
-    <section id="scratch-section" class="py-16 bg-gradient-to-b from-amber-50/60 to-yellow-100/40 border-y border-yellow-200">
+    <section id="scratch-section" class="py-16 bg-gradient-to-b from-pink-50/60 to-rose-100/40 border-y border-rose-200">
       <div class="max-w-xl mx-auto px-6 text-center space-y-6">
         <div class="space-y-3">
-          <span class="text-xs uppercase tracking-widest font-bold text-amber-900 bg-yellow-300/80 px-3 py-1 rounded-full inline-block shadow-sm">Secret Wishes 🪙</span>
-          <h2 class="font-serif text-3xl font-semibold text-gray-800">Scratch ✨</h2>
+          <span class="text-xs uppercase tracking-widest font-bold text-rose-900 bg-rose-200/80 px-3 py-1 rounded-full inline-block shadow-sm">Secret Wishing Card 🪙</span>
+          <h2 class="font-serif text-3xl font-semibold text-gray-800">Scratch & Reveal ✨</h2>
           <p class="text-xs sm:text-sm text-gray-600 max-w-sm mx-auto">
-            Scratch the golden foil below with your finger or mouse to reveal your special wish!
+            Use your finger or mouse to scratch off the rose-gold foil and uncover your secret wish!
           </p>
         </div>
 
-        <div class="relative w-full max-w-md mx-auto h-64 rounded-3xl shadow-2xl overflow-hidden border-4 border-yellow-400 bg-white group">
+        <div class="relative w-full max-w-md mx-auto h-64 rounded-3xl shadow-2xl overflow-hidden border-4 border-rose-400 bg-white group">
           
-          <div id="scratch-reveal-content" class="absolute inset-0 p-6 flex flex-col justify-center items-center text-center bg-gradient-to-br from-amber-50 via-yellow-100 to-amber-100 select-none">
-            <span class="text-4xl mb-2 animate-bounce">👑💛</span>
-            <h3 class="font-serif text-xl font-bold text-amber-900 mb-2">Special Wish For Menahil!</h3>
-            <p class="font-sans text-xs sm:text-sm text-amber-800 leading-relaxed font-medium">
-              "May your upcoming year be as bright and cheerful as your favorite yellow color! Always keep smiling, achieving great success, and bringing positive energy everywhere you go! Happy Birthday! 🎉✨"
+          <div id="scratch-reveal-content" class="absolute inset-0 p-6 flex flex-col justify-center items-center text-center bg-gradient-to-br from-rose-50 via-pink-100 to-rose-100 select-none">
+            <span class="text-4xl mb-2 animate-bounce">👑🌸💥</span>
+            <h3 class="font-serif text-xl font-bold text-rose-950 mb-1">Special Wish For Ansuu!</h3>
+            <p class="font-sans text-xs sm:text-sm text-rose-900 leading-relaxed font-medium">
+              "Ansuu, thoda late wish kar raha hu iske liye so sorry 🙈, par 5.1 ft ki height me itna saara cuteness, hilarious comedy, aur fiery gussa fit hona ek miracle hai! 💥 Chahe kitna bhi gussa aa jaye, tumhara dil hamesha pure gold hai. Always stay happy & blessed! Happy Birthday! 🎉✨"
             </p>
-            <span class="text-[10px] text-amber-700 font-bold tracking-widest uppercase mt-3 bg-yellow-200/80 px-3 py-1 rounded-full border border-yellow-300">✨ 100% Golden Luck Scratched! ✨</span>
+            <span class="text-[10px] text-rose-800 font-bold tracking-widest uppercase mt-2 bg-rose-200/90 px-3 py-1 rounded-full border border-rose-300">✨ #1 Bestie Unlocked Forever ✨</span>
           </div>
 
           <canvas id="scratch-canvas" class="absolute inset-0 w-full h-full cursor-pointer z-10 touch-none"></canvas>
@@ -374,59 +379,63 @@
       </div>
     </section>
 
-    <section id="quiz-section" class="py-16 bg-gradient-to-b from-yellow-100/30 via-amber-50/50 to-[#FFFDF0]">
+    <section id="quiz-section" class="py-16 bg-gradient-to-b from-rose-100/30 via-pink-50/50 to-[#FFFDF9]">
       <div class="max-w-xl mx-auto px-6 text-center space-y-6">
         <div class="space-y-2">
-          <span class="text-xs font-bold text-amber-800 bg-yellow-200/80 px-3 py-1 rounded-full uppercase tracking-wider">Fun Test 🕵️‍♀️</span>
-          <h2 class="font-serif text-3xl font-bold text-gray-800">Menahil's Personality & Logic Test</h2>
-          <p class="text-xs sm:text-sm text-gray-600">Answer these 3 rapid-fire questions to get your official diagnostic badge!</p>
+          <span class="text-xs font-bold text-rose-800 bg-rose-200/80 px-3 py-1 rounded-full uppercase tracking-wider">Diagnostic Test 🕵️‍♀️</span>
+          <h2 class="font-serif text-3xl font-bold text-gray-800">Ansuu's Official Personality Quiz</h2>
+          <p class="text-xs sm:text-sm text-gray-600">Answer 3 rapid-fire questions to unlock your official Royal Bestie Badge!</p>
         </div>
 
-        <div class="bg-white p-6 rounded-3xl border-2 border-yellow-300 shadow-lg text-left space-y-4 max-w-md mx-auto">
+        <div class="bg-white p-6 rounded-3xl border-2 border-rose-300 shadow-lg text-left space-y-4 max-w-md mx-auto">
           
+          <!-- Q1 -->
           <div id="question-1" class="space-y-3">
-            <p class="font-serif font-semibold text-gray-800 text-sm">1. When someone tells you a puzzle or joke, what is your first reaction?</p>
+            <p class="font-serif font-semibold text-gray-800 text-sm">1. When someone teases Ansuu or annoys her, what is her instant reaction?</p>
             <div class="grid grid-cols-1 gap-2">
-              <button onclick="nextQuestion(1, 'A')" class="option-btn text-left p-3 rounded-xl border border-yellow-200 bg-yellow-50/50 text-xs text-gray-700 hover:bg-yellow-200 transition-colors">
-                A) I laugh quietly. 😄
+              <button onclick="nextQuestion(1, 'A')" class="option-btn text-left p-3 rounded-xl border border-rose-200 bg-rose-50/50 text-xs text-gray-700 hover:bg-rose-200 transition-colors">
+                A) A calm, quiet smile. 😊
               </button>
-              <button onclick="nextQuestion(1, 'B')" class="option-btn text-left p-3 rounded-xl border border-yellow-200 bg-yellow-50/50 text-xs text-gray-700 hover:bg-yellow-200 transition-colors">
-                B) "Let's check the absolute logic behind this first!" 🔍📐
+              <button onclick="nextQuestion(1, 'B')" class="option-btn text-left p-3 rounded-xl border border-rose-200 bg-rose-50/50 text-xs text-gray-700 hover:bg-rose-200 transition-colors">
+                B) 5.1 ft High Alert Gussa Mode activated! 🔥 (Par gusse me bhi super cute lagti hai!)
               </button>
             </div>
           </div>
 
+          <!-- Q2 -->
           <div id="question-2" class="space-y-3 hidden">
-            <p class="font-serif font-semibold text-gray-800 text-sm">2. How quickly do you analyze random situations?</p>
+            <p class="font-serif font-semibold text-gray-800 text-sm">2. What is Ansuu's daily secret superpower?</p>
             <div class="grid grid-cols-1 gap-2">
-              <button onclick="nextQuestion(2, 'A')" class="option-btn text-left p-3 rounded-xl border border-yellow-200 bg-yellow-50/50 text-xs text-gray-700 hover:bg-yellow-200 transition-colors">
-                A) I take my time. 🧘‍♀️
+              <button onclick="nextQuestion(2, 'A')" class="option-btn text-left p-3 rounded-xl border border-rose-200 bg-rose-50/50 text-xs text-gray-700 hover:bg-rose-200 transition-colors">
+                A) Sleeping for 14 hours straight. 😴
               </button>
-              <button onclick="nextQuestion(2, 'B')" class="option-btn text-left p-3 rounded-xl border border-yellow-200 bg-yellow-50/50 text-xs text-gray-700 hover:bg-yellow-200 transition-colors">
-                B) Instantly! Spotting details is my superpower. 🌶️
+              <button onclick="nextQuestion(2, 'B')" class="option-btn text-left p-3 rounded-xl border border-rose-200 bg-rose-50/50 text-xs text-gray-700 hover:bg-rose-200 transition-colors">
+                B) 5-time Namazi discipline, top-tier funny jokes & spreading pure positive energy! 🤲✨
               </button>
             </div>
           </div>
 
+          <!-- Q3 -->
           <div id="question-3" class="space-y-3 hidden">
-            <p class="font-serif font-semibold text-gray-800 text-sm">3. If a logical problem is slightly incorrect, what happens?</p>
+            <p class="font-serif font-semibold text-gray-800 text-sm">3. Why is Ansuu the closest & bestest bestie in the world?</p>
             <div class="grid grid-cols-1 gap-2">
-              <button onclick="nextQuestion(3, 'A')" class="option-btn text-left p-3 rounded-xl border border-yellow-200 bg-yellow-50/50 text-xs text-gray-700 hover:bg-yellow-200 transition-colors">
-                A) It's just a game, doesn't matter. 🤷‍♀️
+              <button onclick="nextQuestion(3, 'A')" class="option-btn text-left p-3 rounded-xl border border-rose-200 bg-rose-50/50 text-xs text-gray-700 hover:bg-rose-200 transition-colors">
+                A) Because she sends good memes.
               </button>
-              <button onclick="nextQuestion(3, 'B')" class="option-btn text-left p-3 rounded-xl border border-yellow-200 bg-yellow-50/50 text-xs text-gray-700 hover:bg-yellow-200 transition-colors">
-                B) "This goes against absolute logic. This must be corrected!" 🔍📐
+              <button onclick="nextQuestion(3, 'B')" class="option-btn text-left p-3 rounded-xl border border-rose-200 bg-rose-50/50 text-xs text-gray-700 hover:bg-rose-200 transition-colors">
+                B) Because she is cute, hilarious, fiery gusse-wali, and has the cleanest heart! ❤️👑
               </button>
             </div>
           </div>
 
+          <!-- Quiz Result -->
           <div id="quiz-result" class="text-center space-y-4 hidden py-4">
-            <span class="text-4xl" id="result-emoji">🏆</span>
-            <h4 class="font-serif text-lg font-bold text-amber-700" id="result-title">Certified Logic Expert</h4>
+            <span class="text-4xl" id="result-emoji">👑💥🌸</span>
+            <h4 class="font-serif text-lg font-bold text-rose-800" id="result-title">Certified #1 Bestie Ever!</h4>
             <p class="text-xs text-gray-600 leading-relaxed max-w-xs mx-auto" id="result-desc">
-              Your results are verified! You are officially 99% logical analysis and 1% patience.
+              Verification complete: 100% Cuteness + 100% Hilarious Jokes + 5.1 ft Height + 100% Fiery Gussa = 1000% Best Bestie in the Universe!
             </p>
-            <button onclick="resetQuiz()" class="text-xs text-amber-800 hover:text-amber-950 underline font-semibold">
+            <button onclick="resetQuiz()" class="text-xs text-rose-800 hover:text-rose-950 underline font-semibold">
               Retake Quiz 🔄
             </button>
           </div>
@@ -435,13 +444,13 @@
       </div>
     </section>
 
-    <section id="letter-section" class="py-20 bg-gradient-to-b from-[#FFFDF0] via-yellow-100/30 to-[#FFFDF0] relative overflow-hidden">
+    <section id="letter-section" class="py-20 bg-gradient-to-b from-[#FFFDF9] via-rose-100/30 to-[#FFFDF9] relative overflow-hidden">
       <div class="max-w-4xl mx-auto px-6 text-center space-y-8">
         <div class="space-y-3">
-          <span class="text-xs uppercase tracking-widest font-bold text-amber-700">A Special Note</span>
+          <span class="text-xs uppercase tracking-widest font-bold text-rose-700">Heartfelt Note</span>
           <h2 class="font-serif text-3xl font-semibold text-gray-800">Tap to Unfold My Letter 💌</h2>
           <p class="text-xs sm:text-sm text-gray-600 max-w-sm mx-auto">
-            Tap below to open the yellow envelope!
+            Tap below to open the rose-pink letter created especially for you!
           </p>
         </div>
 
@@ -452,28 +461,37 @@
               
               <div class="letter-sheet text-left flex flex-col justify-between select-none overflow-hidden">
                 <div class="overflow-y-auto pr-1">
-                  <div class="flex justify-between items-center pb-2 mb-2 border-b border-dashed border-amber-300">
-                    <span class="font-serif text-xs font-bold italic text-amber-700">Birthday Note</span>
-                    <span class="text-[10px] text-gray-400">August 26</span>
+                  <div class="flex justify-between items-center pb-2 mb-2 border-b border-dashed border-rose-300">
+                    <span class="font-serif text-xs font-bold italic text-rose-700">Special Birthday Message</span>
+                    <span class="text-[10px] text-gray-400">For Ansuu</span>
                   </div>
-                  <h3 class="font-serif text-sm sm:text-base font-bold text-gray-800 mb-1.5">Dear Menahil, 🌸💛</h3>
+                  <h3 class="font-serif text-sm sm:text-base font-bold text-gray-800 mb-1.5">My Dearest Ansuu, 🌸👑❤️</h3>
                   <div class="font-sans text-xs text-gray-600 leading-relaxed space-y-3">
-                    <p class="text-center font-bold text-amber-900 text-sm" dir="rtl">
-                      سَلَامٌ عَلَيْكُم بِمَا صَبَرْتُمْ فَنِعْمَ عُقْبَى الدَّارِ
+                    
+                    <p class="text-center font-arabic font-bold text-rose-900 text-base" dir="rtl">
+                      رَبِّ اجْعَلْنِي مُقِيمَ الصَّلَاةِ وَمِن ذُرِّيَّتِي ۚ رَبَّنَا وَتَقَبَّلْ دُعَاءِ
                     </p>
-                    <p class="italic text-center text-amber-800 font-serif text-[11px] mb-2">
-                      "Peace be upon you for what you patiently endured. And excellent is the final home." — Qur'an 13:24
+                    <p class="italic text-center text-rose-800 font-serif text-[11px] mb-2">
+                      "My Lord, make me an establisher of prayer, and [also] from my descendants. Our Lord, and accept my supplication." — Surah Ibrahim (14:40)
+                    </p>
+
+                    <p class="font-semibold text-rose-800 bg-rose-50/90 p-2.5 rounded-xl border border-rose-200 text-center shadow-sm">
+                      🥺 Pehle toh, thoda late wish kar raha hu iske liye so so sorry Ansuu! 🙈 Par bestie ke liye wishes aur duayein kabhi purani nahi hoti, and you will always be super special! ✨
+                    </p>
+
+                    <p>
+                      Ansuu, having you as my closest bestie is a huge blessing! Tum sach me kitni pyaari, cute aur hilarious ho—tumhari baaton aur funny jokes se mood hamesha fresh ho jata hai! 💥
                     </p>
                     <p>
-                      Your habit of finding precise logic in every little detail and your passionate expressions make every conversation lively and memorable.
+                      Tumhari 5-time Namaz ki paabandi tumhari life me real Noor aur barakah laati hai! 🤲✨ Chahe tumhari height 5.1 ft ho aur tum kitna bhi chota-mota fiery gussa kar lo, sabko pata hai tumhara dil sabse saaf aur sacha hai.
                     </p>
                     <p>
-                      May this coming year bring you immense happiness, endless yellow treats, and grand achievements! Keep shining with your sharp mind and positive energy! 🎉✨
+                      May Allah fulfill all your dreams, give you endless happiness, peace, success, and long healthy life! Always keep smiling, laughing, and shining! 🎉💖
                     </p>
                   </div>
                 </div>
-                <div class="pt-2 border-t border-dashed border-amber-300 text-right">
-                  <p class="font-serif italic text-[11px] text-amber-700 font-bold">Have a great day! 🎉</p>
+                <div class="pt-2 border-t border-dashed border-rose-300 text-right">
+                  <p class="font-serif italic text-[11px] text-rose-700 font-bold">Always Your Bestie! 🎉</p>
                 </div>
               </div>
             </div>
@@ -486,43 +504,19 @@
       </div>
     </section>
 
-    <section class="py-16 bg-white/70 border-t border-yellow-200">
-      <div class="max-w-md mx-auto px-6 text-center space-y-6">
-        <div class="space-y-2">
-          <span class="text-xs font-bold text-amber-800 bg-yellow-200/80 px-3 py-1 rounded-full uppercase tracking-wider">Unbox Surprise 🎁</span>
-          <h2 class="font-serif text-3xl font-bold text-gray-800">Unwrap Your Gift!</h2>
-          <p class="text-xs sm:text-sm text-gray-600">Tap the gift box below to open your virtual birthday present!</p>
-        </div>
-
-        <div onclick="openGiftBox()" id="gift-box-wrapper" class="cursor-pointer group relative py-8 flex flex-col items-center justify-center">
-          <div id="gift-box" class="text-7xl sm:text-8xl transform group-hover:scale-110 transition-transform duration-300 drop-shadow-xl animate-bounce">
-            🎁
-          </div>
-          <div id="gift-message" class="hidden mt-4 bg-gradient-to-r from-amber-100 via-yellow-200 to-amber-100 p-6 rounded-2xl border-2 border-yellow-400 text-amber-950 shadow-xl space-y-2 max-w-sm">
-            <span class="text-3xl">🌟👑💛</span>
-            <h4 class="font-serif text-lg font-bold text-amber-900">VIP Birthday Badge Unlocked!</h4>
-            <p class="text-xs font-medium text-amber-800">
-              You are awarded the "Golden Joy & Brilliance" trophy! May your year ahead be full of peace, success, and smiles!
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
   </main>
 
-  <footer class="py-10 bg-yellow-100/50 border-t border-yellow-200 text-center space-y-3">
+  <footer class="py-10 bg-rose-100/50 border-t border-rose-200 text-center space-y-3">
     <div class="flex justify-center items-center gap-2">
-      <span class="text-amber-500 text-base">💛</span>
-      <span class="font-serif text-gray-700 text-xs sm:text-sm tracking-wide">Handcrafted in Yellow Theme for Menahil</span>
+      <span class="text-rose-500 text-base">🌸</span>
+      <span class="font-serif text-gray-700 text-xs sm:text-sm tracking-wide">Handcrafted with Love for Ansuu</span>
     </div>
-    <p class="text-[10px] text-amber-800 font-semibold tracking-wider uppercase">Happy Birthday • August 26</p>
+    <p class="text-[10px] text-rose-800 font-semibold tracking-wider uppercase">Happy Birthday • Number 1 Bestie ❤️</p>
   </footer>
 
   <script>
+    // Audio Context Synthesizer setup
     let audioCtx = null;
-    let bgSynthesizerInterval = null;
-    let isPlayingAudio = false;
 
     function getAudioContext() {
       if (!audioCtx) {
@@ -540,8 +534,8 @@
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
         osc.type = 'sine';
-        osc.frequency.setValueAtTime(400, ctx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(800, ctx.currentTime + 0.1);
+        osc.frequency.setValueAtTime(450, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(850, ctx.currentTime + 0.1);
         gain.gain.setValueAtTime(0.15, ctx.currentTime);
         gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.1);
         osc.connect(gain);
@@ -584,59 +578,36 @@
     function triggerConfettiBlast() {
       if (typeof confetti === 'function') {
         confetti({
-          particleCount: 120,
-          spread: 80,
+          particleCount: 130,
+          spread: 85,
           origin: { y: 0.6 },
-          colors: ['#FDE047', '#EAB308', '#CA8A04', '#FEF08A', '#FFFFFF']
+          colors: ['#FB7185', '#F43F5E', '#FECDD3', '#FACC15', '#FFFFFF']
         });
       }
     }
 
+    let isPlayingAudio = false;
     function toggleAudio() {
       const music = document.getElementById('bg-music');
       const label = document.getElementById('audio-label');
       const icon = document.getElementById('audio-icon');
 
+      if (!music) return;
+
       if (isPlayingAudio) {
-        if(music) music.pause();
-        clearInterval(bgSynthesizerInterval);
+        music.pause();
         isPlayingAudio = false;
         label.textContent = 'Music: Off';
         icon.textContent = '🎵';
       } else {
-        isPlayingAudio = true;
-        label.textContent = 'Music: On';
-        icon.textContent = '🎶';
-        
-        if (music) {
-          music.play().catch(err => {
-            console.log("Playing web audio synthesizer fallback:", err);
-            startSynthBgLoop();
-          });
-        } else {
-          startSynthBgLoop();
-        }
+        music.play().then(() => {
+          isPlayingAudio = true;
+          label.textContent = 'Music: On';
+          icon.textContent = '🎶';
+        }).catch(err => {
+          console.log("Audio play blocked until user interaction:", err);
+        });
       }
-    }
-
-    function startSynthBgLoop() {
-      clearInterval(bgSynthesizerInterval);
-      const ctx = getAudioContext();
-      const notes = [261.63, 329.63, 392.00, 523.25];
-      bgSynthesizerInterval = setInterval(() => {
-        if (!isPlayingAudio) return;
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        const f = notes[Math.floor(Math.random() * notes.length)];
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(f, ctx.currentTime);
-        gain.gain.setValueAtTime(0.03, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 1.5);
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start();
-        osc.stop(ctx.currentTime + 1.5);
-      }, 1800);
     }
 
     function openWelcomeEnvelope() {
@@ -646,16 +617,25 @@
       if(env) env.classList.add('is-open');
       playPopSound();
       
-      toggleAudio();
+      const music = document.getElementById('bg-music');
+      if(music) {
+        music.play().then(() => {
+          isPlayingAudio = true;
+          document.getElementById('audio-label').textContent = 'Music: On';
+          document.getElementById('audio-icon').textContent = '🎶';
+        }).catch(e => console.log('Autoplay blocked'));
+      }
       
       setTimeout(() => {
         overlay.style.opacity = '0';
         triggerConfettiBlast();
         
+        // Trigger sequential slow drop-in animations for banner words
         document.getElementById('drop-word-1').classList.add('is-dropped-1');
         document.getElementById('drop-word-2').classList.add('is-dropped-2');
         document.getElementById('drop-word-3').classList.add('is-dropped-3');
         
+        // Start organic butterfly spawner
         startButterflySpawner();
 
         setTimeout(() => {
@@ -705,16 +685,16 @@
       canvas.height = rect.height;
 
       const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-      grad.addColorStop(0, '#EAB308');
-      grad.addColorStop(0.5, '#FDE047');
-      grad.addColorStop(1, '#CA8A04');
+      grad.addColorStop(0, '#FB7185');
+      grad.addColorStop(0.5, '#FECDD3');
+      grad.addColorStop(1, '#F43F5E');
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      ctx.fillStyle = '#713F12';
+      ctx.fillStyle = '#9F1239';
       ctx.font = 'bold 14px sans-serif';
       ctx.textAlign = 'center';
-      ctx.fillText('✨ Scratch with finger or mouse ✨', canvas.width / 2, canvas.height / 2);
+      ctx.fillText('✨ Scratch off to see secret wish! ✨', canvas.width / 2, canvas.height / 2);
 
       let isScratching = false;
       let isRevealed = false;
@@ -768,44 +748,38 @@
 
       canvas.addEventListener('touchstart', (e) => { isScratching = true; scratch(e); }, { passive: true });
       canvas.addEventListener('touchmove', scratch, { passive: true });
-      window.addEventListener('touchend', () => { isScratching = false; });
+      canvas.addEventListener('touchend', () => { isScratching = false; });
     }
 
+    // Quiz Navigation Logic
     let quizAnswers = {};
-
     function nextQuestion(qNum, answer) {
       quizAnswers[qNum] = answer;
       playPopSound();
-      const currentElem = document.getElementById(`question-${qNum}`);
-      if (currentElem) currentElem.classList.add('hidden');
-      
+
+      const currentQ = document.getElementById(`question-${qNum}`);
+      if (currentQ) currentQ.classList.add('hidden');
+
       if (qNum < 3) {
-        const nextElem = document.getElementById(`question-${qNum + 1}`);
-        if (nextElem) nextElem.classList.remove('hidden');
+        const nextQ = document.getElementById(`question-${qNum + 1}`);
+        if (nextQ) nextQ.classList.remove('hidden');
       } else {
         showQuizResult();
       }
     }
 
     function showQuizResult() {
-      const resultElem = document.getElementById('quiz-result');
-      if (resultElem) {
-        resultElem.classList.remove('hidden');
-        triggerConfettiBlast();
-        playBirthdayMelody();
-      }
+      const resultPanel = document.getElementById('quiz-result');
+      if (resultPanel) resultPanel.classList.remove('hidden');
+      triggerConfettiBlast();
     }
 
     function resetQuiz() {
       quizAnswers = {};
       document.getElementById('quiz-result').classList.add('hidden');
-      for(let i = 1; i <= 3; i++) {
-        const q = document.getElementById(`question-${i}`);
-        if(q) {
-          if(i === 1) q.classList.remove('hidden');
-          else q.classList.add('hidden');
-        }
-      }
+      document.getElementById('question-2').classList.add('hidden');
+      document.getElementById('question-3').classList.add('hidden');
+      document.getElementById('question-1').classList.remove('hidden');
     }
 
     function toggleEnvelope() {
@@ -813,86 +787,42 @@
       if (env) {
         env.classList.toggle('is-open');
         playPopSound();
-        if (env.classList.contains('is-open')) {
-          triggerConfettiBlast();
-        }
       }
     }
 
-    let isGiftOpened = false;
-    function openGiftBox() {
-      if (isGiftOpened) return;
-      isGiftOpened = true;
-      playPopSound();
-      triggerConfettiBlast();
-      playBirthdayMelody();
-      
-      const giftBox = document.getElementById('gift-box');
-      const giftMsg = document.getElementById('gift-message');
-      if(giftBox) giftBox.innerHTML = '✨🎁✨';
-      if(giftMsg) giftMsg.classList.remove('hidden');
-    }
-
+    // Living Organic Butterflies Spawner Logic
     function spawnButterfly() {
       const butterfly = document.createElement('div');
       butterfly.className = 'floating-butterfly';
       
-      const randomX = Math.floor(Math.random() * 60) - 30;
-      const startLeft = Math.floor(Math.random() * 80) + 10;
-      butterfly.style.left = startLeft + 'vw';
-      butterfly.style.setProperty('--rand-x', randomX + 'vw');
+      const startX = Math.random() * (window.innerWidth - 120) + 40;
+      butterfly.style.setProperty('--start-x', startX + 'px');
       
-      butterfly.innerHTML = `
-        <div class="butterfly-wings text-2xl sm:text-3xl filter drop-shadow-md cursor-pointer select-none" onclick="popButterfly(this)">
-          🦋
-        </div>
-      `;
+      const duration = 8 + Math.random() * 5;
+      const flapSpeed = 0.20 + Math.random() * 0.12;
+      
+      butterfly.style.setProperty('--duration', duration + 's');
+      butterfly.style.setProperty('--flap-speed', flapSpeed + 's');
+
+      const icons = ['🦋', '🌸', '✨'];
+      const chosen = icons[Math.floor(Math.random() * icons.length)];
+
+      butterfly.innerHTML = `<span class="butterfly-wings text-3xl sm:text-4xl">${chosen}</span>`;
       
       document.body.appendChild(butterfly);
       
       setTimeout(() => {
-        if (butterfly && butterfly.parentNode) {
-          butterfly.parentNode.removeChild(butterfly);
-        }
-      }, 12000);
-    }
-
-    function popButterfly(elem) {
-      playPopSound();
-      if (typeof confetti === 'function') {
-        confetti({
-          particleCount: 15,
-          spread: 40,
-          origin: {
-            x: elem.getBoundingClientRect().left / window.innerWidth,
-            y: elem.getBoundingClientRect().top / window.innerHeight
-          },
-          colors: ['#FDE047', '#EAB308', '#FFFFFF']
-        });
-      }
-      if (elem.parentNode && elem.parentNode.parentNode) {
-        elem.parentNode.parentNode.removeChild(elem.parentNode);
-      }
+        butterfly.remove();
+      }, duration * 1000);
     }
 
     function startButterflySpawner() {
-      for(let i=0; i<3; i++) {
-        setTimeout(spawnButterfly, i * 1500);
-      }
-      setInterval(spawnButterfly, 4500);
-    }
+      spawnButterfly();
+      setTimeout(spawnButterfly, 1000);
 
-    function createClickSparkle(e) {
-      const p = document.createElement('div');
-      p.className = 'sparkle-particle text-lg select-none';
-      p.style.left = e.clientX + 'px';
-      p.style.top = e.clientY + 'px';
-      const sparkles = ['✨', '⭐', '💛', '🌟', '🌸'];
-      p.textContent = sparkles[Math.floor(Math.random() * sparkles.length)];
-      document.body.appendChild(p);
-      setTimeout(() => {
-        if (p.parentNode) p.parentNode.removeChild(p);
-      }, 1000);
+      setInterval(() => {
+        spawnButterfly();
+      }, 2500);
     }
   </script>
 </body>
